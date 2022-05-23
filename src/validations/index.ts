@@ -1,4 +1,4 @@
-import { RequestService } from '../services';
+// import { RequestService } from '../services';
 import get from 'lodash/get';
 
 export enum UniqueValidationEntities {
@@ -127,30 +127,30 @@ export const maxLength32 = maxLength(32);
 export const maxLength64 = maxLength(64);
 
 // TODO Run valudation only on blur
-export const uniqueValidation =
-  (
-    entity: UniqueValidationEntities,
-    field: string,
-    skipId?: string,
-    additionalFieldClause?: Record<string, string | undefined>,
-  ) =>
-  async (value: string) => {
-    if (!value) {
-      return undefined;
-    }
-    const { data: alreadyUsed } = await RequestService.post('validations', {
-      entity,
-      field,
-      value,
-      skipId,
-      additionalFieldClause,
-    });
+// export const uniqueValidation =
+//   (
+//     entity: UniqueValidationEntities,
+//     field: string,
+//     skipId?: string,
+//     additionalFieldClause?: Record<string, string | undefined>,
+//   ) =>
+//   async (value: string) => {
+//     if (!value) {
+//       return undefined;
+//     }
+//     const { data: alreadyUsed } = await RequestService.post('validations', {
+//       entity,
+//       field,
+//       value,
+//       skipId,
+//       additionalFieldClause,
+//     });
 
-    if (alreadyUsed) {
-      return 'Already Taken' as string;
-    }
-    return undefined;
-  };
+//     if (alreadyUsed) {
+//       return 'Already Taken' as string;
+//     }
+//     return undefined;
+//   };
 
 type ValidatorsTypes = (
   value: string,

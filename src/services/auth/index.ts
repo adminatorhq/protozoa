@@ -1,4 +1,4 @@
-import { StorageService } from '../storage/storage.service';
+import { StorageService } from '../storage';
 
 const AUTH_CONSTANTS = {
   JWT_TOKEN_STORAGE_KEY: "__auth__"

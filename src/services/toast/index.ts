@@ -1,8 +1,8 @@
 import toast from 'react-hot-toast';
 import { getBestErrorMessage } from './utils';
 
-export class ToastService {
-  static success(message: string) {
+export const ToastService = {
+  success: (message: string) => {
     return toast.success(message, {
       style: {
         boxShadow: '0 3px 8px rgba(0,0,0,0.175)',
@@ -18,10 +18,10 @@ export class ToastService {
       },
       duration: 3000,
     });
-  }
+  },
 
   // TODO clean up
-  static error(message: unknown) {
+  error: (message: unknown) => {
     return toast.error(getBestErrorMessage(message), {
       style: {
         boxShadow: '0 3px 8px rgba(0,0,0,0.175)',

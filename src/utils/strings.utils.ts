@@ -1,7 +1,7 @@
 import * as randomstring from 'randomstring';
 import { v4 as uuidv4 } from 'uuid';
 
-export class StringHelpers {
+export class StringUtils {
   static generateRandomString(length = 12): string {
     return randomstring.generate(length);
   }
