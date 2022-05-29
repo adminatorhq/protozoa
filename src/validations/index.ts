@@ -50,7 +50,9 @@ export const validJSON = (value: string) => {
 };
 
 export const searchMinLength = (value: string) =>
-  !value || value.length < 4 ? `Search must be with 4 characters or more` : undefined;
+  !value || value.length < 4
+    ? `Search must be with 4 characters or more`
+    : undefined;
 
 export const isNumber = (value: string) =>
   value && isNaN(Number(value)) ? 'Must be a number' : undefined;
@@ -58,28 +60,36 @@ export const isNumber = (value: string) =>
 export const minValue = (min: number) => (value: number) =>
   value && value < min ? `Must be at least ${min}` : undefined;
 
-export const matchOtherField =
-  (otherField: string) => (value: string, allValues: Record<string, unknown>) =>
-    get(allValues, [otherField]) === value ? undefined : 'Not Matching';
+export const matchOtherField = (otherField: string) => (
+  value: string,
+  allValues: Record<string, unknown>
+) => (get(allValues, [otherField]) === value ? undefined : 'Not Matching');
 
-export const lessThanValueOf =
-  (otherField: string, allValues: Record<string, unknown>, name: string) => (value: string) => {
-    if (!value) {
-      return undefined;
-    }
-    return Number(get(allValues, [otherField])) > Number(value)
-      ? undefined
-      : `Must be less than ${name}`;
-  };
+export const lessThanValueOf = (
+  otherField: string,
+  allValues: Record<string, unknown>,
+  name: string
+) => (value: string) => {
+  if (!value) {
+    return undefined;
+  }
+  return Number(get(allValues, [otherField])) > Number(value)
+    ? undefined
+    : `Must be less than ${name}`;
+};
 
 export const alphaNumeric = (value: string) =>
-  value && /[^a-zA-Z0-9]/i.test(value) ? 'Only alphanumeric characters' : undefined;
+  value && /[^a-zA-Z0-9]/i.test(value)
+    ? 'Only alphanumeric characters'
+    : undefined;
 
 export const noSpaces = (value: string) =>
   value && /[\s]/i.test(value) ? 'No spaces allowed' : undefined;
 
 export const isAlphabeticMaybeHyphen = (value: string) =>
-  value && /[^a-zA-Z-]/i.test(value) ? 'Only alphabets and hypens are allowed' : undefined;
+  value && /[^a-zA-Z-]/i.test(value)
+    ? 'Only alphabets and hypens are allowed'
+    : undefined;
 
 export const isSlug = (value: string) =>
   value && /[^a-z0-9-]/.test(value)
@@ -118,7 +128,9 @@ export const isValidPassword = (value: string) => {
 
 // TODO https://github.com/ruimarinho/google-libphonenumber/tree/1e46138878cff479aafe2ce62175c6c49cb58720
 export const isPhoneNumber = (value: string) =>
-  value && !/^([0-9]{11})$/i.test(value) ? 'Invalid phone number, must be 11 digits' : undefined;
+  value && !/^([0-9]{11})$/i.test(value)
+    ? 'Invalid phone number, must be 11 digits'
+    : undefined;
 
 export const minLength2 = minLength(2);
 
@@ -154,13 +166,16 @@ export const maxLength64 = maxLength(64);
 
 type ValidatorsTypes = (
   value: string,
-  allValues?: Record<string, unknown>,
+  allValues?: Record<string, unknown>
 ) => string | Promise<string | undefined> | undefined;
 
-export const composeValidators =
-  (...validators: ValidatorsTypes[]) =>
-  (value: string) =>
-    validators.reduce((error: any, validator) => error || validator(value), undefined);
+export const composeValidators = (...validators: ValidatorsTypes[]) => (
+  value: string
+) =>
+  validators.reduce(
+    (error: any, validator) => error || validator(value),
+    undefined
+  );
 
 export const VALIDATION_LENGTH = {
   DESCRIPTION: 1000,

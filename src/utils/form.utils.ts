@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 export function resetFormValues<T extends Record<string, string>>(
   resetForm: boolean,
   values: T,
-  form: FormApi<T, Partial<T>>,
+  form: FormApi<T, Partial<T>>
 ) {
   form.batch(() => {
     if (resetForm && values) {

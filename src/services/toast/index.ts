@@ -37,5 +37,5 @@ export const ToastService = {
       // },
       duration: 3000,
     });
-  }
-}
+  },
+};

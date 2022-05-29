@@ -4,7 +4,9 @@ export class StringFilters {
 
     if (money) {
       const money$1 = Number(money);
-      currency = `${suffix}${money$1.toFixed(0).replace(/\d(?=(\d{3})+$)/g, '$&,')}`;
+      currency = `${suffix}${money$1
+        .toFixed(0)
+        .replace(/\d(?=(\d{3})+$)/g, '$&,')}`;
     }
 
     return currency;

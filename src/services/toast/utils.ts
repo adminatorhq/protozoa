@@ -1,9 +1,10 @@
 import get from 'lodash/get';
-const DEFAULT_ERROR_MESSAGE = 'Oops! Something Went Wrong. Please Check Your Network And Try Again';
+const DEFAULT_ERROR_MESSAGE =
+  'Oops! Something Went Wrong. Please Check Your Network And Try Again';
 
 export const getBestErrorMessage = (
   errorResponse: Record<string, unknown> | string | unknown,
-  bestErrorMessage = DEFAULT_ERROR_MESSAGE,
+  bestErrorMessage = DEFAULT_ERROR_MESSAGE
 ): string => {
   if (typeof errorResponse === 'string') {
     return errorResponse;
@@ -24,7 +25,8 @@ export const getBestErrorMessage = (
   }
 
   if (bestErrorMessage === 'Network Error') {
-    bestErrorMessage = 'No Network Connection. Please Check Your Network And Try Again';
+    bestErrorMessage =
+      'No Network Connection. Please Check Your Network And Try Again';
   }
 
   return bestErrorMessage;
