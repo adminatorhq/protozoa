@@ -1,5 +1,5 @@
 {
-  "version": "0.2.3",
+  "version": "0.2.4",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -56,16 +56,20 @@
     "@types/dateformat": "^5.0.0",
     "@types/lodash": "^4.14.182",
     "@types/nprogress": "^0.2.0",
+    "@types/ramda": "^0.28.13",
     "@types/randomstring": "^1.1.8",
     "@types/uuid": "^8.3.4",
     "axios": "^0.27.2",
     "date-fns": "^2.28.0",
     "dateformat": "^5.0.3",
     "final-form": "^4.20.7",
+    "immer": "^9.0.14",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
+    "ramda": "^0.28.0",
     "randomstring": "^1.2.2",
     "react-hot-toast": "^2.2.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "zustand": "^3.7.2"
   }
 }

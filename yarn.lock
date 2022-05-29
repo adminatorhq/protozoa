@@ -1407,6 +1407,13 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-1.19.1.tgz#33509849f8e679e4add158959fdb086440e9553f"
   integrity sha512-5qOlnZscTn4xxM5MeGXAMOsIOIKIbh9e85zJWfBRVPlRMEVawzoPhINYbRGkBZCI8LxvBe7tJCdWiarA99OZfQ==
 
+"@types/ramda@^0.28.13":
+  version "0.28.13"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.28.13.tgz#fbd4edddcdc39cba789efa6c45c41f8480882c4f"
+  integrity sha512-ugnamgmaRzB6yontWxKh9kVstbO5gbdNGcbmcZI0U4d9S0fmN/VYCbxVm4crMAkRvMyfO4u+VIjH/G2Fyk04aA==
+  dependencies:
+    ts-toolbelt "^6.15.1"
+
 "@types/randomstring@^1.1.8":
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/@types/randomstring/-/randomstring-1.1.8.tgz#799ce94adbe162964e655df954bf3dc85576747d"
@@ -3555,6 +3562,11 @@ ignore@^5.2.0:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.0.tgz#6d3bac8fa7fe0d45d9f9be7bac2fc279577e345a"
   integrity sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==
 
+immer@^9.0.14:
+  version "9.0.14"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.14.tgz#e05b83b63999d26382bb71676c9d827831248a48"
+  integrity sha512-ubBeqQutOSLIFCUBN03jGeOS6a3DoYlSYwYJTa+gSKEZKU5redJIqkIdZ3JVv/4RZpfcXdAWH5zCNLWPRv2WDw==
+
 import-fresh@^3.0.0, import-fresh@^3.1.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
@@ -5289,6 +5301,11 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+ramda@^0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.28.0.tgz#acd785690100337e8b063cab3470019be427cc97"
+  integrity sha512-9QnLuG/kPVgWvMQ4aODhsBUFKOUmnbUnsSXACv+NCQZcHbeb+v8Lodp8OVxtRULN1/xOyYLLaL6npE6dMq5QTA==
+
 randombytes@2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.0.3.tgz#674c99760901c3c4112771a31e521dc349cc09ec"
@@ -6303,6 +6320,11 @@ ts-jest@^25.3.1:
     semver "6.x"
     yargs-parser "18.x"
 
+ts-toolbelt@^6.15.1:
+  version "6.15.5"
+  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-6.15.5.tgz#cb3b43ed725cb63644782c64fbcad7d8f28c0a83"
+  integrity sha512-FZIXf1ksVyLcfr7M317jbB67XFJhOO1YqdTcuGaq9q5jLUoTikukZ+98TPjKiP2jC5CgmYdWWYs0s2nLSU0/1A==
+
 tsconfig-paths@^3.14.1:
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz#ba0734599e8ea36c862798e920bcf163277b137a"
@@ -6756,3 +6778,8 @@ yargs@^15.3.1:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
+
+zustand@^3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.7.2.tgz#7b44c4f4a5bfd7a8296a3957b13e1c346f42514d"
+  integrity sha512-PIJDIZKtokhof+9+60cpockVOq05sJzHCriyvaLBmEJixseQ1a5Kdov6fWZfWOu5SK9c+FhH1jU0tntLxRJYMA==
