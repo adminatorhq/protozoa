@@ -1,19 +1,19 @@
 // import dateformat from 'dateformat';
 import distanceInWordsToNow from 'date-fns/formatDistanceToNow';
+import format from 'date-fns/format';
 
 export class TimeFilters {
-  static formatTime(time: string, type?: string): string {
-    return `${time} ${type}`;
-    // if (!time) {
-    //   return 'N/A';
-    // }
-    // if (type === 'L') {
-    //   return dateformat(time, 'dS mmm yyyy, h:MM TT');
-    // }
-    // if (type === 'G') {
-    //   return dateformat(time, 'dS mmm yyyy');
-    // }
-    // return dateformat(time, 'mmmm dS, yyyy');
+  static formatTime(time: Date, type?: 'L' | 'G'): string {
+    if (!time) {
+      return 'N/A';
+    }
+    if (type === 'L') {
+      return format(time, 'do MMM yyyy, h:MM aa');
+    }
+    if (type === 'G') {
+      return format(time, 'do MMM yyyy');
+    }
+    return format(time, 'MMMM do, yyyy');
   }
 
   static timeAgo(time: Date): string {
