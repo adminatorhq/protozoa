@@ -1,6 +1,6 @@
 import create, { State, StateCreator } from 'zustand';
 import produce, { Draft } from 'immer';
-import pipe from 'ramda/es/pipe';
+import { pipe } from 'ramda';
 
 const immer = <T extends State>(
   config: StateCreator<T, (fn: (draft: Draft<T>) => void) => void>
