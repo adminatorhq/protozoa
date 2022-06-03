@@ -1,5 +1,5 @@
 {
-  "version": "0.2.7",
+  "version": "0.2.8",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -51,6 +51,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.182",
     "@types/nprogress": "^0.2.0",
+    "@types/qs": "^6.9.7",
     "@types/ramda": "0.27.40",
     "@types/randomstring": "^1.1.8",
     "@types/uuid": "^8.3.4",
@@ -59,10 +60,14 @@
     "final-form": "^4.20.7",
     "immer": "9.0.3",
     "lodash": "^4.17.21",
+    "next": "^12.1.6",
     "nprogress": "^0.2.0",
+    "querystring": "^0.2.1",
     "ramda": "0.27.1",
     "randomstring": "^1.2.2",
+    "react": "^17.0.1",
     "react-hot-toast": "^2.2.0",
+    "react-query": "^3.39.1",
     "uuid": "^8.3.2",
     "zustand": "3.4.2"
   }

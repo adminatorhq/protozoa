@@ -2,7 +2,14 @@ import toast from 'react-hot-toast';
 import { getBestErrorMessage } from './utils';
 
 export const ToastService = {
-  success: (message: string) => {
+  success: (
+    message:
+      | string
+      | {
+          header: string;
+          content: string;
+        }
+  ) => {
     return toast.success(message, {
       style: {
         boxShadow: '0 3px 8px rgba(0,0,0,0.175)',
