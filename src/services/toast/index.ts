@@ -10,7 +10,7 @@ export const ToastService = {
           content: string;
         }
   ) => {
-    return toast.success(message, {
+    return toast.success(message as string, {
       style: {
         boxShadow: '0 3px 8px rgba(0,0,0,0.175)',
         padding: '4px 8px',
