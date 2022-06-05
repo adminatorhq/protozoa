@@ -8,11 +8,11 @@ import qs from 'qs';
 const tableDataParamsToQueryString = (
   dataState: IBEPaginatedDataState
 ): string => {
-  const sortBy = dataState.order?.field || 'createdAt';
-  const orderBy = dataState.order?.by === 'DESC' ? 'DESC' : 'ASC';
+  const sortBy = dataState?.order?.[0].field || 'createdAt';
+  const orderBy = dataState?.order?.[0]?.by === 'DESC' ? 'DESC' : 'ASC';
 
   return qs.stringify({
-    page: dataState.page + 1,
+    page: dataState.pageIndex + 1,
     take: dataState.pageSize,
     orderBy,
     sortBy,
@@ -20,7 +20,7 @@ const tableDataParamsToQueryString = (
   });
 };
 
-export function usePaginatedData<T>(
+export function usePaginatedData<T extends Record<string, unknown>>(
   endPoint: string,
   dataState: IBEPaginatedDataState,
   options: IUseApiOptions<PaginatedData<T>> = {}

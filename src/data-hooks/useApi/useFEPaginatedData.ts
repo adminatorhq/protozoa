@@ -48,7 +48,7 @@ export function useFEPaginatedData<T>(
           });
         }
         if (dataState.order) {
-          const { field, by } = dataState.order;
+          const { field, by } = dataState.order[0];
           returnData = returnData.sort((a, b) => {
             const value1 = get(by === 'ASC' ? a : b, field);
             const value2 = get(by === 'ASC' ? b : a, field);
@@ -64,12 +64,12 @@ export function useFEPaginatedData<T>(
         }
         const totalReturnData = returnData.length;
         return {
-          pageIndex: dataState.page,
+          pageIndex: dataState.pageIndex,
           pageSize,
           totalRecords: totalReturnData,
           data: returnData.slice(
-            (dataState.page - 1) * pageSize,
-            dataState.page * pageSize
+            (dataState.pageIndex - 1) * pageSize,
+            dataState.pageIndex * pageSize
           ),
         };
       },
