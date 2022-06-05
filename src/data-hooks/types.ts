@@ -16,17 +16,17 @@ type IPaginatedDataState = {
   pageIndex: number;
   pageSize?: number;
   order?: OrderValue[];
-  search?: string;
   hiddenColumns?: string[];
-  searchFields?: string[];
 };
 
 export type IFEPaginatedDataState<T> = IPaginatedDataState & {
   filters?: Partial<Record<keyof T, T[keyof T] | T[keyof T][]>>;
+  searchFields?: string[];
+  search?: string;
 };
 
 export type IBEPaginatedDataState = IPaginatedDataState & {
-  filters?: Record<string, unknown>;
+  filters?: Record<string, unknown>[];
 };
 
 export type DataStateKeys<T> = Pick<
