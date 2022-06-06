@@ -11,13 +11,16 @@ const tableDataParamsToQueryString = (
   const sortBy = dataState?.order?.[0]?.field || 'createdAt';
   const orderBy = dataState?.order?.[0]?.by === 'DESC' ? 'DESC' : 'ASC';
 
-  return qs.stringify({
-    page: dataState.pageIndex + 1,
-    take: dataState.pageSize,
-    orderBy,
-    sortBy,
-    filters: dataState.filters,
-  });
+  return (
+    '?' +
+    qs.stringify({
+      page: dataState.pageIndex + 1,
+      take: dataState.pageSize,
+      orderBy,
+      sortBy,
+      filters: dataState.filters,
+    })
+  );
 };
 
 export function usePaginatedData<T extends Record<string, unknown>>(
