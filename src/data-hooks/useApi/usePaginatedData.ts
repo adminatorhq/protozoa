@@ -8,7 +8,7 @@ import qs from 'qs';
 const tableDataParamsToQueryString = (
   dataState: IBEPaginatedDataState
 ): string => {
-  const sortBy = dataState?.order?.[0].field || 'createdAt';
+  const sortBy = dataState?.order?.[0]?.field || 'createdAt';
   const orderBy = dataState?.order?.[0]?.by === 'DESC' ? 'DESC' : 'ASC';
 
   return qs.stringify({
