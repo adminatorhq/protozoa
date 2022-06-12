@@ -89,3 +89,11 @@ export async function makeDeleteRequest(
 ) {
   return makeActionRequest('DELETE', path, data, options);
 }
+
+export async function makePutRequest(
+  path: string,
+  data?: unknown,
+  options?: IActionRequestOptions
+) {
+  return makeActionRequest('DELETE', path, data, options);
+}
