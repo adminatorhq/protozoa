@@ -47,11 +47,11 @@ export function useFEPaginatedData<T>(
             });
           });
         }
-        if (dataState.order) {
-          const { field, by } = dataState.order[0];
+        if (dataState.sortBy) {
+          const { id, desc } = dataState.sortBy[0];
           returnData = returnData.sort((a, b) => {
-            const value1 = get(by === 'ASC' ? a : b, field);
-            const value2 = get(by === 'ASC' ? b : a, field);
+            const value1 = get(desc ? b : a, id);
+            const value2 = get(desc ? a : b, id);
             if (typeof value1 === 'string') {
               return compareString(value1, value2);
             }
