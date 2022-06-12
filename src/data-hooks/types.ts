@@ -1,8 +1,8 @@
 import { UseQueryResult } from 'react-query';
 
 export type OrderValue = {
-  field: string;
-  by: 'ASC' | 'DESC';
+  id: string;
+  desc: boolean;
 };
 
 export type PaginatedData<T> = {
@@ -15,7 +15,7 @@ export type PaginatedData<T> = {
 type IPaginatedDataState = {
   pageIndex: number;
   pageSize?: number;
-  order?: OrderValue[];
+  sortBy?: OrderValue[];
   hiddenColumns?: string[];
 };
 
