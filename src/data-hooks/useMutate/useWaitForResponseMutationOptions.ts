@@ -24,7 +24,7 @@ export function useWaitForResponseMutationOptions<T>(
         }
         ToastService.success(options.smartSuccessMessage(formData));
       } else if (options.successMessage) {
-        ToastService.error(options.successMessage);
+        ToastService.success(options.successMessage);
       }
 
       if (options.onSuccessActionWithFormData) {
