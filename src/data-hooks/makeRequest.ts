@@ -22,7 +22,10 @@ export async function makeGetRequest(path: string, errorMessage?: string) {
     if (response.status === 404) {
       throw new NotFoundError();
     }
-    throw new Error(errorMessage || 'An error occurred');
+    if([401, 400].includes(response.status)){
+      throw new Error((await response.json()).message);
+    }
+    throw new Error(errorMessage || 'An error occurred fetching your data, Please try again later');
   }
 
   return response.json();
@@ -37,7 +40,7 @@ interface IActionRequestOptions {
 }
 
 const makeActionRequest = async (
-  method: 'POST' | 'PATCH' | 'DELETE',
+  method: 'POST' | 'PATCH' | 'DELETE' | "PUT",
   path: string,
   data?: unknown,
   options: IActionRequestOptions = {}
@@ -95,5 +98,5 @@ export async function makePutRequest(
   data?: unknown,
   options?: IActionRequestOptions
 ) {
-  return makeActionRequest('DELETE', path, data, options);
+  return makeActionRequest('PUT', path, data, options);
 }

@@ -12,6 +12,9 @@ export const MutationHelpers = {
   ): T => {
     return ({ ...old, ...formData } as unknown) as T;
   },
+  replace: <T>(_: T, formData: T) => {
+    return formData;
+  },
   update: (currentDataId: string) => <T extends { id: string }, K>(
     old: T[] | undefined = [],
     formData: K
