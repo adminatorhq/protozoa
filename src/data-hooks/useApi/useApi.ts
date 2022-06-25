@@ -4,18 +4,7 @@ import { NotFoundError } from '../_errors';
 import { getQueryCachekey } from '../constants';
 import { IUseApiOptions } from '../types';
 import { makeGetRequest } from '../makeRequest';
-
-function buildApiOptions<T>(options: IUseApiOptions<T>) {
-  return {
-    enabled: options.enabled,
-    select: (data: T) => {
-      if (options.selector) {
-        return options.selector(data);
-      }
-      return data;
-    },
-  };
-}
+import { buildApiOptions } from '../_buildOptions';
 
 export function useApi<T>(endPoint: string, options: IUseApiOptions<T> = {}) {
   const router = useRouter();

@@ -1,8 +1,11 @@
+import { UseQueryOptions } from 'react-query';
 import { IUseApiOptions } from './types';
 
-export function buildApiOptions<T>(options: IUseApiOptions<T>) {
+export function buildApiOptions<T>(
+  options: IUseApiOptions<T>
+): UseQueryOptions<T> {
   return {
-    enabled: options.enabled,
+    ...options,
     select: (data: T) => {
       if (options.selector) {
         return options.selector(data);

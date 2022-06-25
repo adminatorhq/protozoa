@@ -38,6 +38,7 @@ export interface IUseApiOptions<T> {
   selector?: (input: any) => T;
   enabled?: boolean;
   errorMessage?: string;
+  initialData?: T;
   /*
   Some requests may go bad in the BE and it is makes sense
   Like checking if something exists in a list

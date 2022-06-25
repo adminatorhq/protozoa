@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { persistQueryClient } from 'react-query/persistQueryClient-experimental'
+import { createWebStoragePersistor } from 'react-query/createWebStoragePersistor-experimental'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -10,6 +12,13 @@ export const queryClient = new QueryClient({
     },
   },
 });
+
+const localStoragePersistor = createWebStoragePersistor({storage: window.localStorage})
+ 
+ persistQueryClient({
+   queryClient,
+   persistor: localStoragePersistor,
+ })
 
 export const QueryProvider: React.FC<{ children: ReactNode }> = ({
   children,
