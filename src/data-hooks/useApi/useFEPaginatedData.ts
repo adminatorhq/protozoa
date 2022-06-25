@@ -2,7 +2,6 @@ import { useQuery, UseQueryResult } from 'react-query';
 import { makeGetRequest } from '../makeRequest';
 import { getQueryCachekey } from '../constants/getQueryCacheKey';
 import { IFEPaginatedDataState, IUseApiOptions, PaginatedData } from '../types';
-import { buildApiOptions } from '../_buildOptions';
 import get from 'lodash/get';
 
 const DEFAULT_PAGE_SIZE = 10;
@@ -21,8 +20,8 @@ export function useFEPaginatedData<T>(
       return await makeGetRequest(endPoint, 'Data could not be retrieved');
     },
     {
-      ...buildApiOptions(options),
-      select: data => {
+      enabled: options.enabled,
+      select: (data: any) => {
         // This is casting is needed because react-query expects the input and output data to be of the same format :shrug
         let returnData: T[] = (data as unknown) as T[];
         const pageSize = dataState.pageSize || DEFAULT_PAGE_SIZE;
