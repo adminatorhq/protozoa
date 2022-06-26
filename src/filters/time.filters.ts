@@ -1,7 +1,7 @@
 // import dateformat from 'dateformat';
-import distanceInWordsToNow from 'date-fns/formatDistanceToNow';
-import format from 'date-fns/format';
-
+// import  from 'date-fns/formatDistanceToNow';
+// import  from 'date-fns/format';
+import { format, formatDistanceToNow } from 'date-fns';
 export class TimeFilters {
   static formatTime(time: Date, type?: 'L' | 'G'): string {
     if (!time) {
@@ -20,6 +20,6 @@ export class TimeFilters {
     if (!time) {
       return '';
     }
-    return distanceInWordsToNow(time) + ' ago'; // :eyes
+    return formatDistanceToNow(time) + ' ago'; // :eyes
   }
 }
