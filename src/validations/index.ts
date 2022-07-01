@@ -1,16 +1,4 @@
-// import { RequestService } from '../services';
 import get from 'lodash/get';
-
-export enum UniqueValidationEntities {
-  Users = 'users',
-  Site = 'sites',
-  Tag = 'tags',
-  Attribute = 'attributes',
-  AttributeValue = 'attributeValues',
-  Category = 'categories',
-  Product = 'products',
-  Screens = 'screens',
-}
 
 export const requiredIf = (check: boolean) => (value: string) => {
   if (check) {

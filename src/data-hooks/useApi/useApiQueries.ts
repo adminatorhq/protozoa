@@ -17,7 +17,7 @@ export function useApiQueries<T, P>({
   dataTransformer = (data: unknown): P => data as P,
   placeholderDataFn,
 }: IApiQueriesOptions<T, P>): Pick<
-  UseQueryResult<Record<string, P>, unknown>,
+  UseQueryResult<Record<string, UseQueryResult<P, unknown>>, unknown>,
   'data' | 'error' | 'isLoading'
 > {
   const queryResults = useQueries(
@@ -34,14 +34,11 @@ export function useApiQueries<T, P>({
     }))
   );
 
-  const recordedData = (): Record<keyof T, P> => {
-    if (queryResults.some(({ isLoading }) => isLoading)) {
-      return {} as Record<keyof T, P>;
-    }
+  const recordedData = (): Record<keyof T, UseQueryResult<P, unknown>> => {
     return Object.fromEntries(
       input.map((_, index) => [
         input[index][accessor],
-        queryResults[index].data,
+        queryResults[index],
       ])
     );
   };
