@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 
+export const SLUG_LOADING_VALUE = 'loading';
+
 export function useRouteParam(name: string) {
   const router = useRouter();
 
@@ -9,9 +11,6 @@ export function useRouteParam(name: string) {
 
   if (!value) return SLUG_LOADING_VALUE;
 
-  if (Array.isArray(value))
-    throw new Error('Unexpected handle given by Next.js');
+  if (Array.isArray(value)) throw new Error('Unexpected handle given by Next.js');
   return value;
 }
-
-export const SLUG_LOADING_VALUE = 'loading';

@@ -1,14 +1,16 @@
 import get from 'lodash/get';
-const DEFAULT_ERROR_MESSAGE =
-  'Oops! Something Went Wrong. Please Check Your Network And Try Again';
+
+const DEFAULT_ERROR_MESSAGE = 'Oops! Something Went Wrong. Please Check Your Network And Try Again';
 
 export const getBestErrorMessage = (
   errorResponse: Record<string, unknown> | string | unknown,
-  bestErrorMessage = DEFAULT_ERROR_MESSAGE
+  defaultErrorMessage?: string,
 ): string => {
   if (typeof errorResponse === 'string') {
     return errorResponse;
   }
+
+  let bestErrorMessage = defaultErrorMessage || DEFAULT_ERROR_MESSAGE;
 
   if (get(errorResponse, ['message'], false)) {
     bestErrorMessage = get(errorResponse, ['message'], '');
@@ -19,14 +21,11 @@ export const getBestErrorMessage = (
   }
 
   if (bestErrorMessage === 'Internal server error') {
-    // or the error response is 500
-    bestErrorMessage =
-      'Oops! Something Went Wrong On Our End, Our Engineers Are Already Notified And Are Working On It. Please Check Back Shortly';
+    bestErrorMessage = 'Oops! Something Went Wrong On Our End, Our Engineers Are Already Notified And Are Working On It. Please Check Back Shortly';
   }
 
   if (bestErrorMessage === 'Network Error') {
-    bestErrorMessage =
-      'No Network Connection. Please Check Your Network And Try Again';
+    bestErrorMessage = 'No Network Connection. Please Check Your Network And Try Again';
   }
 
   return bestErrorMessage;

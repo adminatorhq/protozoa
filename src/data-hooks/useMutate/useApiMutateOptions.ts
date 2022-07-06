@@ -11,9 +11,9 @@ export function useApiMutateOptions<T, K>(options: IApiMutateOptions<T, K>) {
   const queryClient = useQueryClient();
 
   return {
-    onMutate: async (formData: K) => {
-      return apiMutate.set(oldData => options.onMutate(oldData, formData));
-    },
+    onMutate: async (
+      formData: K,
+    ) => apiMutate.set((oldData) => options.onMutate(oldData, formData)),
     onSuccess: async (formData?: K) => {
       if (options.smartSuccessMessage) {
         if (formData === undefined) {
@@ -24,7 +24,7 @@ export function useApiMutateOptions<T, K>(options: IApiMutateOptions<T, K>) {
         ToastService.success(options.successMessage);
       }
       if (options.otherEndpoints) {
-        options.otherEndpoints.forEach(queryKey => {
+        options.otherEndpoints.forEach((queryKey) => {
           queryClient.invalidateQueries(getQueryCachekey(queryKey));
         });
       }
@@ -39,7 +39,7 @@ export function useApiMutateOptions<T, K>(options: IApiMutateOptions<T, K>) {
       noop(formData, error);
       apiMutate.reset(oldData);
       ToastService.error(
-        'Something went wrong. Please try again or contact support.'
+        'Something went wrong. Please try again or contact support.',
       );
     },
     onSettled: () => {

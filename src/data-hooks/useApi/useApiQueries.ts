@@ -6,7 +6,7 @@ interface IApiQueriesOptions<T, P> {
   input: T[];
   pathFn: (accessorValue: T[keyof T]) => string;
   accessor: keyof T;
-  dataTransformer?: (data: unknown) => P;
+  dataTransformer?: (data: unknown, accessorValue?: T[keyof T]) => P;
   placeholderDataFn?: (accessor: T[keyof T]) => P;
 }
 
@@ -21,30 +21,25 @@ export function useApiQueries<T, P>({
   'data' | 'error' | 'isLoading'
 > {
   const queryResults = useQueries(
-    input.map(inputItem => ({
+    input.map((inputItem) => ({
       placeholderData: placeholderDataFn
         ? placeholderDataFn(inputItem[accessor])
         : undefined,
       queryKey: getQueryCachekey(pathFn(inputItem[accessor])),
-      queryFn: async () => {
-        return dataTransformer(
-          await makeGetRequest(pathFn(inputItem[accessor]))
-        ) as P;
-      },
-    }))
+      queryFn: async () => dataTransformer(
+        await makeGetRequest(pathFn(inputItem[accessor])),
+        inputItem[accessor],
+      ) as P,
+    })),
   );
 
-  const recordedData = (): Record<keyof T, UseQueryResult<P, unknown>> => {
-    return Object.fromEntries(
-      input.map((_, index) => [
-        input[index][accessor],
-        queryResults[index],
-      ])
-    );
-  };
+  const recordedData = (): Record<keyof T, UseQueryResult<P, unknown>> => Object.fromEntries(
+    input.map((_, index) => [input[index][accessor], queryResults[index]]),
+  );
 
-  const findFirst = (key: keyof UseQueryResult) =>
-    queryResults.find(queryResultsItem => queryResultsItem[key])?.[key];
+  const findFirst = (
+    key: keyof UseQueryResult,
+  ) => queryResults.find((queryResultsItem) => queryResultsItem[key])?.[key];
 
   return {
     error: findFirst('error'),

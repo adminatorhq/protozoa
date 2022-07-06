@@ -6,7 +6,7 @@ import { IWaitForResponseMutationOptions } from './types';
 import { ToastService } from '../../services';
 
 export function useWaitForResponseMutationOptions<T>(
-  options: IWaitForResponseMutationOptions<T>
+  options: IWaitForResponseMutationOptions<T>,
 ) {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -19,7 +19,7 @@ export function useWaitForResponseMutationOptions<T>(
       if (options.smartSuccessMessage) {
         if (formData === undefined) {
           throw new Error(
-            'Please return what the data/message you want to return to user'
+            'Please return what the data/message you want to return to user',
           );
         }
         ToastService.success(options.smartSuccessMessage(formData));
@@ -34,13 +34,13 @@ export function useWaitForResponseMutationOptions<T>(
         options.onSuccessActionWithFormData(formData);
       }
 
-      options.endpoints.forEach(queryKey => {
+      options.endpoints.forEach((queryKey) => {
         queryClient.invalidateQueries(getQueryCachekey(queryKey));
       });
     },
     onError: () => {
       ToastService.error(
-        'Something went wrong. Please try again or contact support.'
+        'Something went wrong. Please try again or contact support.',
       );
     },
   };

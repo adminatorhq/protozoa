@@ -3,5 +3,5 @@ export const ButtonLang = {
   create: 'Create',
   update: 'Update',
   upsert: 'Save',
-  createOrUpdate: (hasValues: unknown) => (!!hasValues ? 'Update' : 'Create'),
+  createOrUpdate: (hasValues: unknown) => (hasValues ? 'Update' : 'Create'),
 };

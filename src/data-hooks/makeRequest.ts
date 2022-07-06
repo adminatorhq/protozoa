@@ -1,9 +1,7 @@
 import noop from 'lodash/noop';
 import { NotFoundError } from './_errors';
 
-const getCSRFToken = (): string => {
-  return 'TODO';
-};
+const getCSRFToken = (): string => 'TODO';
 
 const getBestErrorMessage = (input: unknown): string => {
   noop(input);
@@ -26,17 +24,17 @@ export async function makeGetRequest(path: string, errorMessage?: string) {
       throw new Error((await response.json()).message);
     }
     throw new Error(
-      errorMessage ||
-        'An error occurred fetching your data, Please try again later'
+      errorMessage
+        || 'An error occurred fetching your data, Please try again later',
     );
   }
 
   return response.json();
 }
 
-const sleep = (milliseconds: number): Promise<void> => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds));
-};
+const sleep = (milliseconds: number): Promise<void> => new Promise((resolve) => {
+  setTimeout(() => resolve(), milliseconds);
+});
 
 interface IActionRequestOptions {
   mockRequest?: unknown;
@@ -46,7 +44,7 @@ const makeActionRequest = async (
   method: 'POST' | 'PATCH' | 'DELETE' | 'PUT',
   path: string,
   data?: unknown,
-  options: IActionRequestOptions = {}
+  options: IActionRequestOptions = {},
 ) => {
   if (options.mockRequest !== undefined) {
     await sleep(500);
@@ -75,7 +73,7 @@ const makeActionRequest = async (
 export async function makePostRequest(
   path: string,
   data?: unknown,
-  options?: IActionRequestOptions
+  options?: IActionRequestOptions,
 ) {
   return makeActionRequest('POST', path, data, options);
 }
@@ -83,7 +81,7 @@ export async function makePostRequest(
 export async function makePatchRequest(
   path: string,
   data?: unknown,
-  options?: IActionRequestOptions
+  options?: IActionRequestOptions,
 ) {
   return makeActionRequest('PATCH', path, data, options);
 }
@@ -91,7 +89,7 @@ export async function makePatchRequest(
 export async function makeDeleteRequest(
   path: string,
   data?: unknown,
-  options?: IActionRequestOptions
+  options?: IActionRequestOptions,
 ) {
   return makeActionRequest('DELETE', path, data, options);
 }
@@ -99,7 +97,7 @@ export async function makeDeleteRequest(
 export async function makePutRequest(
   path: string,
   data?: unknown,
-  options?: IActionRequestOptions
+  options?: IActionRequestOptions,
 ) {
   return makeActionRequest('PUT', path, data, options);
 }

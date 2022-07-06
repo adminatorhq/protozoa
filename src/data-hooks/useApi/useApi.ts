@@ -26,6 +26,6 @@ export function useApi<T>(endPoint: string, options: IUseApiOptions<T> = {}) {
         throw error;
       }
     },
-    buildApiOptions(options)
+    buildApiOptions(options),
   );
 }

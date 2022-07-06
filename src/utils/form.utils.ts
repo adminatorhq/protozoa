@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 export function resetFormValues<T extends Record<string, string>>(
   resetForm: boolean,
   values: T,
-  form: FormApi<T, Partial<T>>
+  form: FormApi<T, Partial<T>>,
 ) {
   form.batch(() => {
     if (resetForm && values) {
@@ -21,6 +21,7 @@ export function resetFormValues<T extends Record<string, string>>(
 
 export const mutateFormValueANewId = (values: Record<string, string>) => {
   const id = uuidv4();
+  // eslint-disable-next-line no-param-reassign
   values.id = id;
   return id;
 };

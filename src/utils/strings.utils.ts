@@ -11,15 +11,18 @@ export class StringUtils {
   }
 
   static upperCaseFirstLetter(word: string): string {
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(); // TODO Can improved to split at camelCase
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }
 
   static limitTo(word: string, length: number): string {
     return word.slice(0, length);
   }
 
-  static sluggify = (word: string, replacement = '-'): string =>
-    word.toLowerCase().replace(/[^\w]/gi, replacement);
+  static ellipsis(word: string, length: number): string {
+    return word.length > length ? `${word.slice(0, length)}...` : word;
+  }
+
+  static sluggify = (word: string, replacement = '-'): string => word.toLowerCase().replace(/[^\w]/gi, replacement);
 
   static generateRandomNumbers(length: number): string {
     return randomstring.generate({
