@@ -60,7 +60,7 @@ const makeActionRequest = async (
   });
 
   if (!response.ok) {
-    throw new Error(await getBestErrorMessage(response));
+    throw new Error(getBestErrorMessage(response));
   }
 
   try {

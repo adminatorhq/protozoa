@@ -1,5 +1,6 @@
 import * as randomstring from 'randomstring';
 import { v4 as uuidv4 } from 'uuid';
+import pluralize from 'pluralize';
 
 export class StringUtils {
   static generateRandomString(length = 12): string {
@@ -12,6 +13,10 @@ export class StringUtils {
 
   static upperCaseFirstLetter(word: string): string {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  }
+
+  static pluralize(word: string, count: number, inclusive?: boolean): string {
+    return pluralize(word, count, inclusive);
   }
 
   static limitTo(word: string, length: number): string {
