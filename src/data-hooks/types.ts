@@ -1,4 +1,4 @@
-import { UseQueryResult } from 'react-query';
+import { UseQueryResult } from "react-query";
 
 export type OrderValue = {
   id: string;
@@ -31,7 +31,7 @@ export type IBEPaginatedDataState = IPaginatedDataState & {
 
 export type DataStateKeys<T> = Pick<
   UseQueryResult<T>,
-  'data' | 'isLoading' | 'isRefetching' | 'error'
+  "data" | "isLoading" | "isRefetching" | "error"
 >;
 
 export interface IUseApiOptions<T> {

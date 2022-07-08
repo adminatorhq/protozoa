@@ -1,8 +1,8 @@
-import { UseQueryOptions } from 'react-query';
-import { IUseApiOptions } from './types';
+import { UseQueryOptions } from "react-query";
+import { IUseApiOptions } from "./types";
 
 export function buildApiOptions<T>(
-  options: IUseApiOptions<T>,
+  options: IUseApiOptions<T>
 ): UseQueryOptions<T> {
   return {
     ...options,

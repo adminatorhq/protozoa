@@ -1,18 +1,18 @@
-import noop from 'lodash/noop';
-import { NotFoundError } from './_errors';
+import noop from "lodash/noop";
+import { NotFoundError } from "./_errors";
 
-const getCSRFToken = (): string => 'TODO';
+const getCSRFToken = (): string => "TODO";
 
 const getBestErrorMessage = (input: unknown): string => {
   noop(input);
-  return 'TODO';
+  return "TODO";
 };
 
 export async function makeGetRequest(path: string, errorMessage?: string) {
   const response = await fetch(path, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -24,27 +24,28 @@ export async function makeGetRequest(path: string, errorMessage?: string) {
       throw new Error((await response.json()).message);
     }
     throw new Error(
-      errorMessage
-        || 'An error occurred fetching your data, Please try again later',
+      errorMessage ||
+        "An error occurred fetching your data, Please try again later"
     );
   }
 
   return response.json();
 }
 
-const sleep = (milliseconds: number): Promise<void> => new Promise((resolve) => {
-  setTimeout(() => resolve(), milliseconds);
-});
+const sleep = (milliseconds: number): Promise<void> =>
+  new Promise((resolve) => {
+    setTimeout(() => resolve(), milliseconds);
+  });
 
 interface IActionRequestOptions {
   mockRequest?: unknown;
 }
 
 const makeActionRequest = async (
-  method: 'POST' | 'PATCH' | 'DELETE' | 'PUT',
+  method: "POST" | "PATCH" | "DELETE" | "PUT",
   path: string,
   data?: unknown,
-  options: IActionRequestOptions = {},
+  options: IActionRequestOptions = {}
 ) => {
   if (options.mockRequest !== undefined) {
     await sleep(500);
@@ -53,8 +54,8 @@ const makeActionRequest = async (
   const response = await fetch(path, {
     method,
     headers: {
-      'Content-Type': 'application/json',
-      'x-csrf-token': await getCSRFToken(),
+      "Content-Type": "application/json",
+      "x-csrf-token": await getCSRFToken(),
     },
     body: data ? JSON.stringify(data) : undefined,
   });
@@ -73,31 +74,31 @@ const makeActionRequest = async (
 export async function makePostRequest(
   path: string,
   data?: unknown,
-  options?: IActionRequestOptions,
+  options?: IActionRequestOptions
 ) {
-  return makeActionRequest('POST', path, data, options);
+  return makeActionRequest("POST", path, data, options);
 }
 
 export async function makePatchRequest(
   path: string,
   data?: unknown,
-  options?: IActionRequestOptions,
+  options?: IActionRequestOptions
 ) {
-  return makeActionRequest('PATCH', path, data, options);
+  return makeActionRequest("PATCH", path, data, options);
 }
 
 export async function makeDeleteRequest(
   path: string,
   data?: unknown,
-  options?: IActionRequestOptions,
+  options?: IActionRequestOptions
 ) {
-  return makeActionRequest('DELETE', path, data, options);
+  return makeActionRequest("DELETE", path, data, options);
 }
 
 export async function makePutRequest(
   path: string,
   data?: unknown,
-  options?: IActionRequestOptions,
+  options?: IActionRequestOptions
 ) {
-  return makeActionRequest('PUT', path, data, options);
+  return makeActionRequest("PUT", path, data, options);
 }

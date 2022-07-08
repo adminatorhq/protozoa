@@ -1,15 +1,15 @@
-import { FormApi } from 'final-form';
-import { v4 as uuidv4 } from 'uuid';
+import { FormApi } from "final-form";
+import { v4 as uuidv4 } from "uuid";
 
 export function resetFormValues<T extends Record<string, string>>(
   resetForm: boolean,
   values: T,
-  form: FormApi<T, Partial<T>>,
+  form: FormApi<T, Partial<T>>
 ) {
   form.batch(() => {
     if (resetForm && values) {
       Object.keys(values).forEach((field: string) => {
-        if (field === 'id') {
+        if (field === "id") {
           return;
         }
         form.change(field, undefined);

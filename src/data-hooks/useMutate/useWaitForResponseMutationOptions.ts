@@ -1,12 +1,12 @@
-import { useRouter } from 'next/router';
-import { useQueryClient } from 'react-query';
-import { PASS_DATA_FROM_HANDLER_ERROR_MESSAGE } from './constants';
-import { getQueryCachekey } from '../constants/getQueryCacheKey';
-import { IWaitForResponseMutationOptions } from './types';
-import { ToastService } from '../../services';
+import { useRouter } from "next/router";
+import { useQueryClient } from "react-query";
+import { PASS_DATA_FROM_HANDLER_ERROR_MESSAGE } from "./constants";
+import { getQueryCachekey } from "../constants/getQueryCacheKey";
+import { IWaitForResponseMutationOptions } from "./types";
+import { ToastService } from "../../services";
 
 export function useWaitForResponseMutationOptions<T>(
-  options: IWaitForResponseMutationOptions<T>,
+  options: IWaitForResponseMutationOptions<T>
 ) {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -19,7 +19,7 @@ export function useWaitForResponseMutationOptions<T>(
       if (options.smartSuccessMessage) {
         if (formData === undefined) {
           throw new Error(
-            'Please return what the data/message you want to return to user',
+            "Please return what the data/message you want to return to user"
           );
         }
         ToastService.success(options.smartSuccessMessage(formData));
@@ -40,7 +40,7 @@ export function useWaitForResponseMutationOptions<T>(
     },
     onError: () => {
       ToastService.error(
-        'Something went wrong. Please try again or contact support.',
+        "Something went wrong. Please try again or contact support."
       );
     },
   };

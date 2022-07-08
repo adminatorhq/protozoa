@@ -1,5 +1,5 @@
-import { useQueryClient } from 'react-query';
-import { getQueryCachekey } from '../constants/getQueryCacheKey';
+import { useQueryClient } from "react-query";
+import { getQueryCachekey } from "../constants/getQueryCacheKey";
 
 export function useApiMutate<T>(endpoint: string) {
   const queryClient = useQueryClient();

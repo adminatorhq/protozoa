@@ -1,3 +1,3 @@
 export const RoutesLang = {
-  Create: 'new',
+  Create: "new",
 };

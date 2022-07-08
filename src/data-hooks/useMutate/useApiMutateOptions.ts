@@ -1,19 +1,18 @@
-import noop from 'lodash/noop';
-import { useQueryClient } from 'react-query';
-import { PASS_DATA_FROM_HANDLER_ERROR_MESSAGE } from './constants';
-import { IApiMutateOptions } from './types';
-import { useApiMutate } from './useApiMutate';
-import { getQueryCachekey } from '../constants/getQueryCacheKey';
-import { ToastService } from '../../services';
+import noop from "lodash/noop";
+import { useQueryClient } from "react-query";
+import { PASS_DATA_FROM_HANDLER_ERROR_MESSAGE } from "./constants";
+import { IApiMutateOptions } from "./types";
+import { useApiMutate } from "./useApiMutate";
+import { getQueryCachekey } from "../constants/getQueryCacheKey";
+import { ToastService } from "../../services";
 
 export function useApiMutateOptions<T, K>(options: IApiMutateOptions<T, K>) {
   const apiMutate = useApiMutate<T>(options.dataQueryPath);
   const queryClient = useQueryClient();
 
   return {
-    onMutate: async (
-      formData: K,
-    ) => apiMutate.set((oldData) => options.onMutate(oldData, formData)),
+    onMutate: async (formData: K) =>
+      apiMutate.set((oldData) => options.onMutate(oldData, formData)),
     onSuccess: async (formData?: K) => {
       if (options.smartSuccessMessage) {
         if (formData === undefined) {
@@ -39,7 +38,7 @@ export function useApiMutateOptions<T, K>(options: IApiMutateOptions<T, K>) {
       noop(formData, error);
       apiMutate.reset(oldData);
       ToastService.error(
-        'Something went wrong. Please try again or contact support.',
+        "Something went wrong. Please try again or contact support."
       );
     },
     onSettled: () => {
