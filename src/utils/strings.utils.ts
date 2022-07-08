@@ -1,6 +1,6 @@
-import * as randomstring from 'randomstring';
-import { v4 as uuidv4 } from 'uuid';
-import pluralize from 'pluralize';
+import * as randomstring from "randomstring";
+import { v4 as uuidv4 } from "uuid";
+import pluralize from "pluralize";
 
 export class StringUtils {
   static generateRandomString(length = 12): string {
@@ -27,12 +27,13 @@ export class StringUtils {
     return word.length > length ? `${word.slice(0, length)}...` : word;
   }
 
-  static sluggify = (word: string, replacement = '-'): string => word.toLowerCase().replace(/[^\w]/gi, replacement);
+  static sluggify = (word: string, replacement = "-"): string =>
+    word.toLowerCase().replace(/[^\w]/gi, replacement);
 
   static generateRandomNumbers(length: number): string {
     return randomstring.generate({
       length,
-      charset: 'numeric',
+      charset: "numeric",
     });
   }
 }
