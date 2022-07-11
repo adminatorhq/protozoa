@@ -8,8 +8,8 @@ import { buildApiOptions } from "../_buildOptions";
 const tableDataParamsToQueryString = (
   dataState: IBEPaginatedDataState
 ): string => {
-  const sortBy = dataState?.sortBy?.[0]?.id || "createdAt";
-  const orderBy = dataState?.sortBy?.[0]?.desc ? "desc" : "asc";
+  const sortBy = dataState?.sortBy?.[0]?.id;
+  const orderBy = dataState?.sortBy?.[0]?.desc;
 
   return `?${qs.stringify({
     page: dataState.pageIndex + 1,

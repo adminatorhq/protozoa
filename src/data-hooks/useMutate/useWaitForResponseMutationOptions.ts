@@ -38,9 +38,10 @@ export function useWaitForResponseMutationOptions<T>(
         queryClient.invalidateQueries(getQueryCachekey(queryKey));
       });
     },
-    onError: () => {
+    onError: (error: { message: string }) => {
       ToastService.error(
-        "Something went wrong. Please try again or contact support."
+        // :eyes
+        error.message || "Something went wrong. Please try again"
       );
     },
   };

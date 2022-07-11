@@ -1,7 +1,9 @@
 import get from "lodash/get";
 
 export const required = (value: string) =>
-  value || typeof value === "number" ? undefined : ("Required" as string);
+  value || typeof value === "number" || typeof value === "boolean"
+    ? undefined
+    : ("Required" as string);
 
 export const requiredIf = (check: boolean) => (value: string) => {
   if (check) {

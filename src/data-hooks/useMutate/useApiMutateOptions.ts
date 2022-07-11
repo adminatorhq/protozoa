@@ -34,11 +34,16 @@ export function useApiMutateOptions<T, K>(options: IApiMutateOptions<T, K>) {
         options.onSuccessActionWithFormData(formData);
       }
     },
-    onError: (error: unknown, formData: K, oldData: T | undefined) => {
+    onError: (
+      error: { message: string },
+      formData: K,
+      oldData: T | undefined
+    ) => {
       noop(formData, error);
       apiMutate.reset(oldData);
       ToastService.error(
-        "Something went wrong. Please try again or contact support."
+        error.message ||
+          "Something went wrong. Please try again or contact support."
       );
     },
     onSettled: () => {

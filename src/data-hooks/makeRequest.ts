@@ -1,12 +1,6 @@
-import noop from "lodash/noop";
 import { NotFoundError } from "./_errors";
 
 const getCSRFToken = (): string => "TODO";
-
-const getBestErrorMessage = (input: unknown): string => {
-  noop(input);
-  return "TODO";
-};
 
 export async function makeGetRequest(path: string, errorMessage?: string) {
   const response = await fetch(path, {
@@ -61,7 +55,14 @@ const makeActionRequest = async (
   });
 
   if (!response.ok) {
-    throw new Error(getBestErrorMessage(response));
+    // TODO test
+    if (response.status === 404) {
+      throw new NotFoundError();
+    }
+    if ([401, 400].includes(response.status)) {
+      throw new Error((await response.json()).message);
+    }
+    throw new Error("An error occurred processing your request");
   }
 
   try {
