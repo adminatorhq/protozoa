@@ -1,6 +1,6 @@
 type ToastMessageInput =
   | { message: string; action: { label: string; action: () => void } }
-  | "string";
+  | string;
 
 export interface IApiMutateOptions<T, K> {
   dataQueryPath: string;

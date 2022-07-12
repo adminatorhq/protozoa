@@ -28,7 +28,7 @@ export const ToastService = {
     }
 
     toast.success(
-      () => (
+      (t) => (
         <div>
           <span>{message.message}</span>
           <br />
@@ -41,7 +41,10 @@ export const ToastService = {
           >
             <button
               type="button"
-              onClick={message.action.action}
+              onClick={() => {
+                message.action.action();
+                toast.dismiss(t.id);
+              }}
               style={{
                 border: 0,
                 display: "inline-block",
