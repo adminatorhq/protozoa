@@ -1,5 +1,6 @@
-export class SharedConfigSerivce {
-  static APP_URL = process.env.REACT_APP_BACKEND_URL
-    ? `${process.env.REACT_APP_BACKEND_URL}/api`
-    : "";
-}
+export const SHARED_CONFIG = {
+  BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL || "",
+  AUTH_ERROR_CODE:
+    process.env.NEXT_PUBLIC_AUTH_ERROR_CODE || "NOT_AUTHENTICATED",
+  AUTH_SIGNIN_URL: process.env.NEXT_PUBLIC_AUTH_SIGNIN_URL || "/auth",
+};

@@ -137,7 +137,7 @@ export const maxLength64 = maxLength(64);
 //     if (!value) {
 //       return undefined;
 //     }
-//     const { data: alreadyUsed } = await RequestService.post('validations', {
+//     const { data: alreadyUsed } = await makePostRequest('validations', {
 //       entity,
 //       field,
 //       value,

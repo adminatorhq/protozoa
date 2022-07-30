@@ -1,27 +1,50 @@
+import { AuthService } from "../services";
+import { SHARED_CONFIG } from "../services/config";
 import { NotFoundError } from "./_errors";
 
 const getCSRFToken = (): string => "TODO";
+
+const getRequestHeaders = () => {
+  const authToken = AuthService.getAuthToken();
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+  if (authToken) {
+    headers.Authorization = `Bearer ${authToken}`;
+  }
+  return headers;
+};
+
+const handleRequestError = async (response: Response, errorMessage: string) => {
+  if (response.ok) {
+    return;
+  }
+  if (response.status === 404) {
+    throw new NotFoundError();
+  }
+  if ([401, 400].includes(response.status)) {
+    const error = await response.json();
+    if (error.errorCode === SHARED_CONFIG.AUTH_ERROR_CODE) {
+      window.location.replace(SHARED_CONFIG.AUTH_SIGNIN_URL);
+    }
+    throw new Error(error.message);
+  }
+  throw new Error(errorMessage);
+};
 
 export async function makeGetRequest(path: string, errorMessage?: string) {
   const response = await fetch(path, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
+      ...getRequestHeaders(),
     },
   });
 
-  if (!response.ok) {
-    if (response.status === 404) {
-      throw new NotFoundError();
-    }
-    if ([401, 400].includes(response.status)) {
-      throw new Error((await response.json()).message);
-    }
-    throw new Error(
-      errorMessage ||
-        "An error occurred fetching your data, Please try again later"
-    );
-  }
+  await handleRequestError(
+    response,
+    errorMessage ||
+      "An error occurred fetching your data, Please try again later"
+  );
 
   return response.json();
 }
@@ -48,22 +71,16 @@ const makeActionRequest = async (
   const response = await fetch(path, {
     method,
     headers: {
-      "Content-Type": "application/json",
-      "x-csrf-token": await getCSRFToken(),
+      "x-csrf-token": getCSRFToken(),
+      ...getRequestHeaders(),
     },
     body: data ? JSON.stringify(data) : undefined,
   });
 
-  if (!response.ok) {
-    // TODO test
-    if (response.status === 404) {
-      throw new NotFoundError();
-    }
-    if ([401, 400].includes(response.status)) {
-      throw new Error((await response.json()).message);
-    }
-    throw new Error("An error occurred processing your request");
-  }
+  await handleRequestError(
+    response,
+    "An error occurred processing your request"
+  );
 
   try {
     return await response.json();
