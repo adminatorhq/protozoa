@@ -9,7 +9,7 @@ const tableDataParamsToQueryString = (
   dataState: IBEPaginatedDataState
 ): string => {
   const sortBy = dataState?.sortBy?.[0]?.id;
-  const orderBy = dataState?.sortBy?.[0]?.desc;
+  const orderBy = dataState?.sortBy?.[0]?.desc ? "desc" : "asc"; // :eues
 
   return `?${qs.stringify({
     page: dataState.pageIndex + 1,
