@@ -1,18 +1,25 @@
-import cryptoRandomString from "crypto-random-string";
+import * as randomstring from "randomstring";
 import { v4 as uuidv4 } from "uuid";
 import pluralize from "pluralize";
 
 export class StringUtils {
   static generateRandomString(length = 12): string {
-    return cryptoRandomString({ length, type: "hex" });
+    return randomstring.generate(length);
   }
 
   static generateRandomNumbers(length: number): string {
-    return cryptoRandomString({ length, type: "numeric" });
+    return randomstring.generate({
+      length,
+      charset: "numeric",
+    });
   }
 
-  static generateRandomGibberish(length = 128): string {
-    return cryptoRandomString({ length, type: "ascii-printable" });
+  static generateRandomGibberish(length = 12): string {
+    return randomstring.generate({
+      length,
+      charset:
+        "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~",
+    });
   }
 
   static generateUUID(): string {
