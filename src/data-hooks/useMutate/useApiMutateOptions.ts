@@ -41,7 +41,6 @@ export function useApiMutateOptions<T, K>(options: IApiMutateOptions<T, K>) {
     ) => {
       noop(formData, error);
       apiMutate.reset(oldData);
-      console.log(error, error.message);
       ToastService.error(
         error.message ||
           "Something went wrong. Please try again or contact support."

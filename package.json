@@ -8,7 +8,7 @@
     "src"
   ],
   "engines": {
-    "node": ">=16",
+    "node": "=16",
     "npm": "=8"
   },
   "scripts": {
@@ -42,6 +42,8 @@
     "@babel/preset-typescript": "^7.18.6",
     "@gothicgeeks/eslint-config": "git+ssh://git@github.com:thrownullexception/eslint-config.git#c002cdbbc8097daa41ae09e9927f41e2ad90babd",
     "@size-limit/preset-small-lib": "^7.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
     "eslint": "^8.19.0",
     "husky": "^8.0.1",
     "lint-staged": "^12.4.2",
