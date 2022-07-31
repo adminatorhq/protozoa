@@ -18,7 +18,7 @@ export class StringUtils {
     return randomstring.generate({
       length,
       charset:
-        "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~",
+        "!#$%&()*:;<>?{|}0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz",
     });
   }
 
