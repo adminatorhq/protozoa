@@ -1,10 +1,18 @@
-import * as randomstring from "randomstring";
+import cryptoRandomString from "crypto-random-string";
 import { v4 as uuidv4 } from "uuid";
 import pluralize from "pluralize";
 
 export class StringUtils {
   static generateRandomString(length = 12): string {
-    return randomstring.generate(length);
+    return cryptoRandomString({ length, type: "hex" });
+  }
+
+  static generateRandomNumbers(length: number): string {
+    return cryptoRandomString({ length, type: "numeric" });
+  }
+
+  static generateRandomGibberish(length = 128): string {
+    return cryptoRandomString({ length, type: "ascii-printable" });
   }
 
   static generateUUID(): string {
@@ -29,11 +37,4 @@ export class StringUtils {
 
   static sluggify = (word: string, replacement = "-"): string =>
     word.toLowerCase().replace(/[^\w]/gi, replacement);
-
-  static generateRandomNumbers(length: number): string {
-    return randomstring.generate({
-      length,
-      charset: "numeric",
-    });
-  }
 }

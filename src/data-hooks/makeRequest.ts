@@ -25,6 +25,7 @@ const handleRequestError = async (response: Response, errorMessage: string) => {
   if ([401, 400].includes(response.status)) {
     const error = await response.json();
     if (error.errorCode === SHARED_CONFIG.AUTH_ERROR_CODE) {
+      AuthService.removeAuthToken();
       window.location.replace(SHARED_CONFIG.AUTH_SIGNIN_URL);
     }
     throw new Error(error.message);
