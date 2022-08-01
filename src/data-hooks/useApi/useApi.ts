@@ -36,7 +36,7 @@ export function useStorageApi<T>(endPoint: string, options: IUseApiOptions<T>) {
     ...options,
     selector: (response) => {
       const data = options.selector ? options.selector(response) : response;
-      AppStorage.set(response, endPoint);
+      AppStorage.set(endPoint, response);
       return data;
     },
     placeholderData: AppStorage.get(endPoint),

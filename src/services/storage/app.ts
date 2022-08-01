@@ -5,28 +5,17 @@ const PREFIX =
   process.env.NEXT_PUBLIC_APP_STORAGE_PREFIX || "__cardinal_app_config__";
 
 export const AppStorage = {
-  getKey: (key: string, entity = ""): string => {
-    const storageKey = `${PREFIX}${key}`;
-    return StringUtils.sluggify(
-      entity ? `${storageKey}_${entity}` : storageKey,
-      "_"
-    );
+  getKey: (key: string): string => {
+    return StringUtils.sluggify(`${PREFIX}${key}`);
   },
-  set: (
-    value: Record<string, unknown> | unknown[],
-    key: string,
-    entity?: string
-  ) => {
-    StorageService.setString(
-      AppStorage.getKey(key, entity),
-      JSON.stringify(value)
-    );
+  set: (key: string, value: Record<string, unknown> | unknown[]) => {
+    StorageService.setString(AppStorage.getKey(key), JSON.stringify(value));
   },
-  get: (key: string, entity?: string) => {
+  get: (key: string) => {
     if (typeof window === "undefined") {
       return undefined;
     }
-    const data = StorageService.getString(AppStorage.getKey(key, entity));
+    const data = StorageService.getString(AppStorage.getKey(key));
     if (!data) {
       return undefined;
     }
