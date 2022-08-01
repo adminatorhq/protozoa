@@ -158,9 +158,9 @@ type ValidatorsTypes = (
 
 export const composeValidators =
   (...validators: ValidatorsTypes[]) =>
-  (value: string) =>
+  (value: string, allValues: Record<string, unknown>) =>
     validators.reduce(
-      (error: any, validator) => error || validator(value),
+      (error: any, validator) => error || validator(value, allValues),
       undefined
     );
 
