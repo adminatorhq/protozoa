@@ -1,5 +1,5 @@
 import { FormApi } from "final-form";
-import { v4 as uuidv4 } from "uuid";
+import { StringUtils } from "./strings.utils";
 
 export function resetFormValues<T extends Record<string, string>>(
   resetForm: boolean,
@@ -20,7 +20,7 @@ export function resetFormValues<T extends Record<string, string>>(
 }
 
 export const mutateFormValueANewId = (values: Record<string, string>) => {
-  const id = uuidv4();
+  const id = StringUtils.generateUUID();
   // eslint-disable-next-line no-param-reassign
   values.id = id;
   return id;

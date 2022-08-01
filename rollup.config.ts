@@ -3,6 +3,7 @@ export default {
   // external: (id: string) => {
   //   return !id.startsWith('.') && !path.isAbsolute(id);
   // },
+  //   https://blog.logrocket.com/does-my-bundle-look-big-in-this
   treeshake: {
     moduleSideEffects: false,
   },
