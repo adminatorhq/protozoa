@@ -6,7 +6,7 @@ const PREFIX =
 
 export const AppStorage = {
   getKey: (key: string): string => {
-    return StringUtils.sluggify(`${PREFIX}${key}`);
+    return StringUtils.sluggify(`${PREFIX}${key}`, "_");
   },
   set: (key: string, value: Record<string, unknown> | unknown[]) => {
     StorageService.setString(AppStorage.getKey(key), JSON.stringify(value));

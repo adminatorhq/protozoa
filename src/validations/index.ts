@@ -113,12 +113,6 @@ export const isValidPassword = (value: string) => {
   return undefined;
 };
 
-// TODO https://github.com/ruimarinho/google-libphonenumber/tree/1e46138878cff479aafe2ce62175c6c49cb58720
-export const isPhoneNumber = (value: string) =>
-  value && !/^([0-9]{11})$/i.test(value)
-    ? "Invalid phone number, must be 11 digits"
-    : undefined;
-
 export const minLength2 = minLength(2);
 
 export const maxLength32 = maxLength(32);
