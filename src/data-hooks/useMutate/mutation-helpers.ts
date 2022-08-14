@@ -3,6 +3,9 @@
 // Sure there are plenty libraries that do a better job at this but I just want to be lazy this once
 export const MutationHelpers = {
   append: <T, K>(old: T[] | undefined = [], formData: K) => [...old, formData],
+  remove: <T>(old: T[] | undefined = [], formData: T) => [
+    ...old.filter((oldItem) => formData !== oldItem),
+  ],
   mergeArray: <T, K>(old: T[] | undefined = [], formData: K[] = []) => [
     ...old,
     ...formData,

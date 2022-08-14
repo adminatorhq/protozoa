@@ -49,7 +49,7 @@ export function useFEPaginatedData<T>(
             )
           );
         }
-        if (dataState.sortBy) {
+        if (dataState.sortBy && dataState.sortBy.length > 0) {
           const { id, desc } = dataState.sortBy[0];
           returnData = returnData.sort((a, b) => {
             const value1 = get(desc ? b : a, id);
