@@ -1,8 +1,7 @@
 import { StorageService } from ".";
 import { StringUtils } from "../../utils";
 
-const PREFIX =
-  process.env.NEXT_PUBLIC_APP_STORAGE_PREFIX || "__cardinal_app_config__";
+const PREFIX = process.env.NEXT_PUBLIC_APP_STORAGE_PREFIX || "_app_config__";
 
 export const AppStorage = {
   getKey: (key: string): string => {

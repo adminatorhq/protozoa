@@ -1,2 +1,2 @@
 export const dataNotFoundMessage = (input: string) =>
-  `${input} cound not be retrieved`;
+  `${input} could not be retrieved`;
