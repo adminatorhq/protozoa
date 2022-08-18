@@ -2,6 +2,13 @@ import { AuthService } from "../services";
 import { SHARED_CONFIG } from "../services/config";
 import { NotFoundError } from "./_errors";
 
+const pathWithBaseUrl = (path: string) => {
+  if (path.startsWith("http")) {
+    return path;
+  }
+  return (process.env.NEXT_PUBLIC_BASE_URL || "") + path;
+};
+
 const getCSRFToken = (): string => "TODO";
 
 const getRequestHeaders = () => {
@@ -34,7 +41,7 @@ const handleRequestError = async (response: Response, errorMessage: string) => {
 };
 
 export async function makeGetRequest(path: string, errorMessage?: string) {
-  const response = await fetch(path, {
+  const response = await fetch(pathWithBaseUrl(path), {
     method: "GET",
     headers: {
       ...getRequestHeaders(),
@@ -69,7 +76,7 @@ const makeActionRequest = async (
     await sleep(500);
     return options.mockRequest;
   }
-  const response = await fetch(path, {
+  const response = await fetch(pathWithBaseUrl(path), {
     method,
     headers: {
       "x-csrf-token": getCSRFToken(),
