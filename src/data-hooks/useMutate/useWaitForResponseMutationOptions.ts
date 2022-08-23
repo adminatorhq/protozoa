@@ -40,7 +40,6 @@ export function useWaitForResponseMutationOptions<T>(
     },
     onError: (error: { message: string }) => {
       ToastService.error(
-        // :eyes
         error.message || "Something went wrong. Please try again"
       );
     },

@@ -12,47 +12,17 @@ export const requiredIf = (check: boolean) => (value: string) => {
   return undefined;
 };
 
-export const isPositiveNumber = (value: string | number) => {
-  if (!value && value !== 0) {
-    return undefined;
-  }
-  return typeof value === "number" && value > 0
-    ? undefined
-    : ("Must be a postive number" as string);
-};
-
 export const maxLength = (max: number) => (value: string) =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined;
 
 export const minLength = (min: number) => (value: string) =>
   value && value.length < min ? `Must be ${min} characters or more` : undefined;
 
-export const validJSON = (value: string) => {
-  if (!value) {
-    return undefined;
-  }
-  try {
-    JSON.parse(value);
-    return undefined;
-  } catch (error) {
-    return "Invalid JSON";
-  }
-};
-
-export const searchMinLength = (value: string) =>
-  !value || value.length < 4
-    ? "Search must be with 4 characters or more"
-    : undefined;
-
 export const isNumber = (value: string) =>
   value && Number.isNaN(Number(value)) ? "Must be a number" : undefined;
 
 export const minValue = (min: number) => (value: number) =>
   value && value < min ? `Must be at least ${min}` : undefined;
-
-export const matchOtherField =
-  (otherField: string) => (value: string, allValues: Record<string, unknown>) =>
-    get(allValues, [otherField]) === value ? undefined : "Not Matching";
 
 export const lessThanValueOf =
   (otherField: string, allValues: Record<string, unknown>, name: string) =>
@@ -65,59 +35,8 @@ export const lessThanValueOf =
       : `Must be less than ${name}`;
   };
 
-export const alphaNumeric = (value: string) =>
-  value && /[^a-zA-Z0-9]/i.test(value)
-    ? "Only alphanumeric characters"
-    : undefined;
-
-export const noSpaces = (value: string) =>
-  value && /[\s]/i.test(value) ? "No spaces allowed" : undefined;
-
-export const isAlphabeticMaybeHyphen = (value: string) =>
-  value && /[^a-zA-Z-]/i.test(value)
-    ? "Only alphabets and hypens are allowed"
-    : undefined;
-
-export const isSlug = (value: string) =>
-  value && /[^a-z0-9-]/.test(value)
-    ? "Only small letters alphabets, numbers and hypens are allowed"
-    : undefined;
-
 export const isEmail = (value: string) =>
   value && value.match(/\S+@\S+\.\S+/) ? undefined : "Invalid Email";
-
-export const isValidPassword = (value: string) => {
-  if (!value) {
-    return undefined;
-  }
-
-  if (value.length < 8) {
-    return "Must be at least 8 characters";
-  }
-
-  if (!/(?=.*[a-z])/.test(value)) {
-    return "Must contain at least 1 lowercase";
-  }
-
-  if (!/(?=.*[A-Z])/.test(value)) {
-    return "Must contain at least 1 uppercase";
-  }
-
-  if (!/(?=.*\d)/.test(value)) {
-    return "Must contain a number";
-  }
-
-  if (!/(?=.*[!@#$%^&*])/.test(value)) {
-    return "Must contain symbols";
-  }
-  return undefined;
-};
-
-export const minLength2 = minLength(2);
-
-export const maxLength32 = maxLength(32);
-
-export const maxLength64 = maxLength(64);
 
 // TODO Run valudation only on blur
 // export const uniqueValidation =
