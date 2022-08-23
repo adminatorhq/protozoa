@@ -60,7 +60,6 @@ export function useFEPaginatedData<T>(
             if (typeof value1 === "number") {
               return compareNumbers(value1, value2);
             }
-            // Dont order if unknown types
             return 0;
           });
         }

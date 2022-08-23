@@ -1,6 +1,3 @@
-// import dateformat from 'dateformat';
-// import  from 'date-fns/formatDistanceToNow';
-// import  from 'date-fns/format';
 import { format, formatDistanceToNow } from "date-fns";
 
 export class TimeFilters {
@@ -21,6 +18,6 @@ export class TimeFilters {
     if (!time) {
       return "";
     }
-    return `${formatDistanceToNow(time)} ago`; // :eyes
+    return `${formatDistanceToNow(time)} ago`;
   }
 }
