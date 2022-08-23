@@ -1,5 +1,3 @@
-import get from "lodash/get";
-
 export const required = (value: string) =>
   value || typeof value === "number" || typeof value === "boolean"
     ? undefined
@@ -20,49 +18,6 @@ export const minLength = (min: number) => (value: string) =>
 
 export const isNumber = (value: string) =>
   value && Number.isNaN(Number(value)) ? "Must be a number" : undefined;
-
-export const minValue = (min: number) => (value: number) =>
-  value && value < min ? `Must be at least ${min}` : undefined;
-
-export const lessThanValueOf =
-  (otherField: string, allValues: Record<string, unknown>, name: string) =>
-  (value: string) => {
-    if (!value) {
-      return undefined;
-    }
-    return Number(get(allValues, [otherField])) > Number(value)
-      ? undefined
-      : `Must be less than ${name}`;
-  };
-
-export const isEmail = (value: string) =>
-  value && value.match(/\S+@\S+\.\S+/) ? undefined : "Invalid Email";
-
-// TODO Run valudation only on blur
-// export const uniqueValidation =
-//   (
-//     entity: UniqueValidationEntities,
-//     field: string,
-//     skipId?: string,
-//     additionalFieldClause?: Record<string, string | undefined>,
-//   ) =>
-//   async (value: string) => {
-//     if (!value) {
-//       return undefined;
-//     }
-//     const { data: alreadyUsed } = await makePostRequest('validations', {
-//       entity,
-//       field,
-//       value,
-//       skipId,
-//       additionalFieldClause,
-//     });
-
-//     if (alreadyUsed) {
-//       return 'Already Taken' as string;
-//     }
-//     return undefined;
-//   };
 
 type ValidatorsTypes = (
   value: string,
