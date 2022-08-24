@@ -1,4 +1,4 @@
-# Adminator Protozoa
+# Hadmean Protozoa
 
 This house all the generic, business void code that are used in multiple projects.
 
