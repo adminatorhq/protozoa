@@ -7,8 +7,7 @@
   "author": "Ayobami Akingbade",
   "module": "dist/protozoa.esm.js",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "start": "tsdx watch",
