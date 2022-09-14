@@ -13,9 +13,14 @@ export function useWaitForResponseMutationOptions<T>(
 
   return {
     onSuccess: async (formData: T | undefined) => {
+      options.endpoints.forEach((queryKey) => {
+        queryClient.invalidateQueries(getQueryCachekey(queryKey));
+      });
+
       if (options.redirect) {
         router.replace(options.redirect);
       }
+
       if (options.smartSuccessMessage) {
         if (formData === undefined) {
           throw new Error(
@@ -33,10 +38,6 @@ export function useWaitForResponseMutationOptions<T>(
         }
         options.onSuccessActionWithFormData(formData);
       }
-
-      options.endpoints.forEach((queryKey) => {
-        queryClient.invalidateQueries(getQueryCachekey(queryKey));
-      });
     },
     onError: (error: { message: string }) => {
       ToastService.error(

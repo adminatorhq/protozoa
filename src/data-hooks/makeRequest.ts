@@ -9,8 +9,6 @@ const pathWithBaseUrl = (path: string) => {
   return (process.env.NEXT_PUBLIC_BASE_URL || "") + path;
 };
 
-const getCSRFToken = (): string => "TODO";
-
 const getRequestHeaders = () => {
   const authToken = AuthService.getAuthToken();
   const headers: Record<string, string> = {
@@ -79,7 +77,6 @@ const makeActionRequest = async (
   const response = await fetch(pathWithBaseUrl(path), {
     method,
     headers: {
-      "x-csrf-token": getCSRFToken(),
       ...getRequestHeaders(),
     },
     body: data ? JSON.stringify(data) : undefined,

@@ -1,5 +1,5 @@
 import * as randomstring from "randomstring";
-// import { v4 as uuidv4 } from "uuid"; TODO
+import { v4 as uuidv4 } from "uuid";
 import pluralize from "pluralize";
 
 export class StringUtils {
@@ -23,8 +23,7 @@ export class StringUtils {
   }
 
   static generateUUID(): string {
-    // return uuidv4();
-    return "3ced15e1-0f2f-403d-89e2-00f7ee7474fc";
+    return uuidv4();
   }
 
   static upperCaseFirstLetter(word: string): string {
