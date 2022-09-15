@@ -1,7 +1,5 @@
 import * as randomstring from "randomstring";
-import { v4 as uuidv4 } from "uuid";
 import pluralize from "pluralize";
-import { nanoid } from "nanoid";
 
 export class StringUtils {
   static generateRandomString(length = 12): string {
@@ -21,14 +19,6 @@ export class StringUtils {
       charset:
         "!#$%&()*:;<>?{|}0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz",
     });
-  }
-
-  static generateUUID(): string {
-    return uuidv4();
-  }
-
-  static generateId(): string {
-    return nanoid();
   }
 
   static upperCaseFirstLetter(word: string): string {
