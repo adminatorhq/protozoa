@@ -1196,10 +1196,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@hadmean/eslint-config@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@hadmean/eslint-config/-/eslint-config-1.0.0.tgz#be2f85f0ddad8f740d7700f457ef25ac93f0330b"
-  integrity sha512-siNDMEY+LjkuOYwtZFDsxOWj7Sft7pX9/iPhI++XF6NpST22EQqrlIUfZ4gHuw9FQ/kYysVQPErskgcQgbshqA==
+"@hadmean/eslint-config@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@hadmean/eslint-config/-/eslint-config-1.0.2.tgz#051468d4c2ae3ae43f8a87076e7000e84245d639"
+  integrity sha512-XxjDviq1+mo6CXrBqWWx1E8Js/LwxQ9mkVZnEzdr8YlL6bGIdTBgJL/VWRKY5Ql9L7xKE5EKB7PsbfJ+15A6+Q==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.30.5"
     "@typescript-eslint/parser" "^5.30.5"
@@ -7234,11 +7234,6 @@ tiny-glob@^0.2.6:
   dependencies:
     globalyzer "0.1.0"
     globrex "^0.1.2"
-
-tiny-invariant@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.2.0.tgz#a1141f86b672a9148c72e978a19a73b9b94a15a9"
-  integrity sha512-1Uhn/aqw5C6RI4KejVeTg6mIS7IqxnLJ8Mv2tV5rTc0qWobay7pDUz6Wi392Cnc8ak1H0F2cjoRzb2/AW4+Fvg==
 
 tmp@^0.0.33:
   version "0.0.33"
