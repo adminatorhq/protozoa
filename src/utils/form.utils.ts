@@ -1,5 +1,4 @@
 import { FormApi } from "final-form";
-import { StringUtils } from "./strings.utils";
 
 export function resetFormValues<T extends Record<string, string>>(
   resetForm: boolean,
@@ -18,10 +17,3 @@ export function resetFormValues<T extends Record<string, string>>(
     }
   });
 }
-
-export const mutateFormValueANewId = (values: Record<string, string>) => {
-  const id = StringUtils.generateUUID();
-  // eslint-disable-next-line no-param-reassign
-  values.id = id;
-  return id;
-};
