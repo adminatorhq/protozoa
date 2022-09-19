@@ -6,65 +6,60 @@ export interface IDateFilterOption {
   countLimit?: number;
 }
 
-export const BEGINNING_OF_TIME_VALUE = "bot";
-export const NOW_VALUE = "now";
+export enum DATE_FILTER_VALUE {
+  BEGINNING_OF_TIME_VALUE = "bt",
+  BEGINNING_OF_YEAR = "by",
+  NOW = "n",
+  HOUR = "h",
+  DAY = "d",
+  WEEK = "w",
+  MONTH = "m",
+  QUARTER = "q",
+  YEAR = "y",
+}
 
-export const DATE_FILTER_VALUE = {
-  BEGINNING_OF_TIME_VALUE: "bt",
-  BEGINNING_OF_YEAR: "by",
-  NOW: "n",
-  HOUR: "h",
-  DAY: "d",
-  WEEK: "w",
-  MONTH: "m",
-  QUARTER: "q",
-  YEAR: "y",
-};
-
-export const DATE_FILTER_OPTIONS: IDateFilterOption[] = [
-  {
+const DATE_FILTER_OPTIONS$1: Record<
+  DATE_FILTER_VALUE,
+  Omit<IDateFilterOption, "value">
+> = {
+  [DATE_FILTER_VALUE.BEGINNING_OF_TIME_VALUE]: {
     label: "Beginning of time",
-    value: DATE_FILTER_VALUE.BEGINNING_OF_TIME_VALUE,
     hideOnTo: true,
   },
-  {
+  [DATE_FILTER_VALUE.BEGINNING_OF_YEAR]: {
     label: "Beginning of Year",
-    value: DATE_FILTER_VALUE.BEGINNING_OF_YEAR,
     hideOnTo: true,
   },
-  {
+  [DATE_FILTER_VALUE.HOUR]: {
     label: "Hour",
-    value: DATE_FILTER_VALUE.HOUR,
     countLimit: 24,
   },
-  {
+  [DATE_FILTER_VALUE.DAY]: {
     label: "Day",
-    value: DATE_FILTER_VALUE.DAY,
     countLimit: 7,
   },
-  {
+  [DATE_FILTER_VALUE.WEEK]: {
     label: "Week",
-    value: DATE_FILTER_VALUE.WEEK,
     countLimit: 4,
   },
-  {
+  [DATE_FILTER_VALUE.MONTH]: {
     label: "Month",
-    value: DATE_FILTER_VALUE.MONTH,
     countLimit: 12,
   },
-  {
+  [DATE_FILTER_VALUE.QUARTER]: {
     label: "Quarter",
-    value: DATE_FILTER_VALUE.QUARTER,
     countLimit: 4,
   },
-  {
+  [DATE_FILTER_VALUE.YEAR]: {
     label: "Year",
-    value: DATE_FILTER_VALUE.YEAR,
     countLimit: 10,
   },
-  {
+  [DATE_FILTER_VALUE.NOW]: {
     label: "Now",
-    value: DATE_FILTER_VALUE.NOW,
     hideOnFrom: true,
   },
-];
+};
+
+export const DATE_FILTER_OPTIONS: IDateFilterOption[] = Object.entries(
+  DATE_FILTER_OPTIONS$1
+).map(([value, config]) => ({ ...config, value }));
