@@ -12,19 +12,29 @@ export const MutationHelpers = {
   mergeObject: <T, K extends Partial<T>>(old: T | undefined, formData: K): T =>
     ({ ...old, ...formData } as unknown as T),
   replace: <T>(_: T, formData: T) => formData,
-  update:
-    (currentDataId: string) =>
-    <T extends { id: string }, K>(old: T[] | undefined = [], formData: K) => {
-      const index = old.findIndex(({ id }) => id === currentDataId);
-      if (index > -1) {
-        old[index] = { ...old[index], ...formData };
-      }
-      return [...old];
-    },
-  delete:
-    (currentDataId: string) =>
-    <T extends { id: string }>(old: T[] | undefined = []) =>
-      [...old.filter(({ id }) => currentDataId !== id)],
+  update: <T extends { id: string }, K extends { id: string }>(
+    old: T[] | undefined = [],
+    formData: K
+  ) => {
+    const index = old.findIndex(({ id }) => id === formData.id);
+    if (index > -1) {
+      old[index] = { ...old[index], ...formData };
+    }
+    return [...old];
+  },
+  delete: <T extends { id: string }>(
+    old: T[] | undefined = [],
+    currentDataId: string
+  ) => [...old.filter(({ id }) => currentDataId !== id)],
+  sortOrder: <T extends { id: string }>(
+    old: T[] | undefined = [],
+    order: string[]
+  ) => {
+    const oldMap = Object.fromEntries(
+      old.map((oldItem) => [oldItem.id, oldItem])
+    );
+    return order.map((orderId) => oldMap[orderId]);
+  },
   removeMany: <T>(old: T[] | undefined = [], formData: T[]) => [
     ...old.filter((oldItem) => !formData.includes(oldItem)),
   ],

@@ -1,7 +1,7 @@
 import { TimeFilters } from "../time.filters";
 
 describe("TimeFilters", () => {
-  it("works", () => {
+  it("should format time", () => {
     expect(TimeFilters.formatTime(new Date("2022-03-05"))).toEqual(
       "March 5th, 2022"
     );

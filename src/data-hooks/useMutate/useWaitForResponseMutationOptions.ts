@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useQueryClient } from "react-query";
 import { PASS_DATA_FROM_HANDLER_ERROR_MESSAGE } from "./constants";
 import { getQueryCachekey } from "../constants/getQueryCacheKey";
@@ -8,7 +7,6 @@ import { ToastService } from "../../services";
 export function useWaitForResponseMutationOptions<T>(
   options: IWaitForResponseMutationOptions<T>
 ) {
-  const router = useRouter();
   const queryClient = useQueryClient();
 
   return {
@@ -16,10 +14,6 @@ export function useWaitForResponseMutationOptions<T>(
       options.endpoints.forEach((queryKey) => {
         queryClient.invalidateQueries(getQueryCachekey(queryKey));
       });
-
-      if (options.redirect) {
-        router.replace(options.redirect);
-      }
 
       if (options.smartSuccessMessage) {
         if (formData === undefined) {
