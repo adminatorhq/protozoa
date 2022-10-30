@@ -12,6 +12,7 @@ Items found here are
  - State management creator
  - Data fetching 
  - Form utils
+ - Number Utils
  - General types
  - Filters for date, string and numbers
 
