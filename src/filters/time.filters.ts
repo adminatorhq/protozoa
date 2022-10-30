@@ -6,7 +6,7 @@ export class TimeFilters {
       return "N/A";
     }
     if (type === "L") {
-      return format(time, "do MMM yyyy, h:MM aa");
+      return format(time, "do MMM yyyy, h:mm aa");
     }
     if (type === "G") {
       return format(time, "do MMM yyyy");
