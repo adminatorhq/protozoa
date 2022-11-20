@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { NotFoundError } from "../_errors";
 import { getQueryCachekey } from "../constants";
 import { IUseApiOptions } from "../types";
-import { makeGetRequest } from "../makeRequest";
+import { makeActionRequest, makeGetRequest } from "../makeRequest";
 import { buildApiOptions } from "../_buildOptions";
 import { AppStorage } from "../../services/storage/app";
 
@@ -16,6 +16,14 @@ export function useApi<T>(endPoint: string, options: IUseApiOptions<T> = {}) {
         return options.wipData;
       }
       try {
+        if (options.request) {
+          return await makeActionRequest(
+            options.request.method,
+            endPoint,
+            options.request.body,
+            { errorMessage: options.errorMessage }
+          );
+        }
         return await makeGetRequest(endPoint, options.errorMessage);
       } catch (error) {
         if (options.returnUndefinedOnError) {

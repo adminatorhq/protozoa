@@ -38,6 +38,10 @@ export interface IUseApiOptions<T> {
   selector?: (input: any) => T;
   enabled?: boolean;
   errorMessage?: string;
+  request?: {
+    method: "POST" | "PATCH" | "PUT";
+    body: Record<string, unknown>;
+  };
   placeholderData?: T;
   /*
   Some requests may go bad in the BE and it is makes sense

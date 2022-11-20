@@ -62,9 +62,10 @@ const sleep = (milliseconds: number): Promise<void> =>
 
 interface IActionRequestOptions {
   mockRequest?: unknown;
+  errorMessage?: string;
 }
 
-const makeActionRequest = async (
+export const makeActionRequest = async (
   method: "POST" | "PATCH" | "DELETE" | "PUT",
   path: string,
   data?: unknown,
@@ -84,7 +85,7 @@ const makeActionRequest = async (
 
   await handleRequestError(
     response,
-    "An error occurred processing your request"
+    options.errorMessage || "An error occurred processing your request"
   );
 
   try {
