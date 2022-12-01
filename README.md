@@ -22,7 +22,7 @@ Items found here are
 To run, use:
 
 ```bash
-npm start # or yarn start
+npm start 
 ```
 
 
@@ -31,10 +31,10 @@ npm start # or yarn start
 To do a one-off build, use:
 
 ```bash
-npm run build # or yarn build.
+npm run build 
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` cause a rebuild to `/dist`.
 
 
 ### Tests
@@ -42,6 +42,6 @@ This builds to `/dist` and runs the project in watch mode so any edits you save 
 Tests are set up to run with 
 
 ```bash
-npm test # or yarn test
+npm test 
 ```
 
