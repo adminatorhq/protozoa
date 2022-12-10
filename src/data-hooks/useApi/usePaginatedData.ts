@@ -6,7 +6,7 @@ import { IPaginatedDataState, IUseApiOptions, PaginatedData } from "../types";
 import { buildApiOptions } from "../_buildOptions";
 
 const tableDataParamsToQueryString = (
-  dataState: IPaginatedDataState<any>
+  dataState: IPaginatedDataState<unknown>
 ): string => {
   const sortBy = dataState?.sortBy?.[0]?.id;
   const orderBy = dataState?.sortBy?.[0]?.desc ? "desc" : "asc";
