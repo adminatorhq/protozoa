@@ -12,21 +12,12 @@ export type PaginatedData<T> = {
   data: T[];
 };
 
-type IPaginatedDataState = {
+export type IPaginatedDataState<T> = {
   pageIndex: number;
   pageSize?: number;
   sortBy?: OrderValue[];
   hiddenColumns?: string[];
-};
-
-export type IFEPaginatedDataState<T> = IPaginatedDataState & {
-  filters?: Partial<Record<keyof T, T[keyof T] | T[keyof T][]>>;
-  searchFields?: string[];
-  search?: string;
-};
-
-export type IBEPaginatedDataState = IPaginatedDataState & {
-  filters?: Record<string, unknown>[];
+  filters?: Record<string, T>[];
 };
 
 export type DataStateKeys<T> = Pick<

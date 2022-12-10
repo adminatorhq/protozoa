@@ -1,8 +1,8 @@
-import { IBEPaginatedDataState } from "../types";
+import { IPaginatedDataState } from "../types";
 
 export const getQueryCachekey = (endPoint: string) => endPoint.split("/");
 
 export const getPaginatedDataCachekey = (
   endPoint: string,
-  dataState: IBEPaginatedDataState
+  dataState: IPaginatedDataState<unknown>
 ) => [...getQueryCachekey(endPoint), JSON.stringify(dataState)];

@@ -2,11 +2,11 @@ import { useQuery, UseQueryResult } from "react-query";
 import qs from "qs";
 import { makeGetRequest } from "../makeRequest";
 import { getPaginatedDataCachekey } from "../constants";
-import { IBEPaginatedDataState, IUseApiOptions, PaginatedData } from "../types";
+import { IPaginatedDataState, IUseApiOptions, PaginatedData } from "../types";
 import { buildApiOptions } from "../_buildOptions";
 
 const tableDataParamsToQueryString = (
-  dataState: IBEPaginatedDataState
+  dataState: IPaginatedDataState<any>
 ): string => {
   const sortBy = dataState?.sortBy?.[0]?.id;
   const orderBy = dataState?.sortBy?.[0]?.desc ? "desc" : "asc";
@@ -22,7 +22,7 @@ const tableDataParamsToQueryString = (
 
 export function usePaginatedData<T extends Record<string, unknown>>(
   endPoint: string,
-  dataState: IBEPaginatedDataState,
+  dataState: IPaginatedDataState<T>,
   options: IUseApiOptions<PaginatedData<T>> = {}
 ): UseQueryResult<PaginatedData<T>> {
   return useQuery<PaginatedData<T>>(
