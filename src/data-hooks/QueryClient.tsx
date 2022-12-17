@@ -6,7 +6,13 @@ export const queryClient = new QueryClient({
     queries: {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
-      retry: false,
+      // retry(failureCount, error) {
+      //   const status = (error as Response)?.status;
+      //   if (`${status}`.startsWith("4")) {
+      //     return false;
+      //   }
+      //   return failureCount < 3;
+      // },
     },
   },
 });
