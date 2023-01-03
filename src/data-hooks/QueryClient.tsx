@@ -6,13 +6,19 @@ export const queryClient = new QueryClient({
     queries: {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
-      // retry(failureCount, error) {
-      //   const status = (error as Response)?.status;
-      //   if (`${status}`.startsWith("4")) {
-      //     return false;
-      //   }
-      //   return failureCount < 3;
-      // },
+      retry: (failureCount, error: any) => {
+        const statusCode = (error as Response)?.status;
+        if (!statusCode) {
+          return true;
+        }
+        if (statusCode < 500) {
+          return false;
+        }
+        if (statusCode >= 400) {
+          return false;
+        }
+        return failureCount < 3;
+      },
     },
   },
 });
