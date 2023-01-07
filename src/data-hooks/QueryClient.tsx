@@ -11,10 +11,7 @@ export const queryClient = new QueryClient({
         if (!statusCode) {
           return true;
         }
-        if (statusCode < 500) {
-          return false;
-        }
-        if (statusCode >= 400) {
+        if (`${statusCode}`.startsWith("4")) {
           return false;
         }
         return failureCount < 3;

@@ -1,6 +1,6 @@
 import { AuthService } from "../services";
 import { SHARED_CONFIG } from "../services/config";
-import { NotFoundError } from "./_errors";
+import { NotFoundError, ApiRequestError } from "./_errors";
 
 const pathWithBaseUrl = (path: string) => {
   if (path.startsWith("http")) {
@@ -33,9 +33,9 @@ const handleRequestError = async (response: Response, errorMessage: string) => {
       AuthService.removeAuthToken();
       window.location.replace(SHARED_CONFIG.AUTH_SIGNIN_URL);
     }
-    throw new Error(error.message);
+    throw new ApiRequestError(response.status, error.message);
   }
-  throw new Error(errorMessage);
+  throw new ApiRequestError(response.status, errorMessage);
 };
 
 export async function makeGetRequest(path: string, errorMessage?: string) {
