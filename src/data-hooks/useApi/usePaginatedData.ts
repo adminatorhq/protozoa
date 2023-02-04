@@ -5,7 +5,7 @@ import { getPaginatedDataCachekey } from "../constants";
 import { IPaginatedDataState, IUseApiOptions, PaginatedData } from "../types";
 import { buildApiOptions } from "../_buildOptions";
 
-const tableDataParamsToQueryString = (
+export const tableDataParamsToQueryString = (
   dataState: IPaginatedDataState<unknown>
 ): string => {
   const sortBy = dataState?.sortBy?.[0]?.id;

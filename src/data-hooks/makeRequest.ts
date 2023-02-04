@@ -126,3 +126,43 @@ export async function makePutRequest(
 ) {
   return makeActionRequest("PUT", path, data, options);
 }
+
+export async function makeDownloadRequest(path: string, errorMessage?: string) {
+  function performBrowserSave(filename: string, blob: Blob) {
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.target = "_blank";
+    a.download = filename;
+    document.body.appendChild(a);
+
+    a.click();
+
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    });
+  }
+
+  const response = await fetch(pathWithBaseUrl(path), {
+    method: "GET",
+    headers: {
+      ...getRequestHeaders(),
+    },
+  });
+
+  await handleRequestError(
+    response,
+    errorMessage ||
+      "An error occurred downloading your data, Please try again later"
+  );
+
+  const fileName =
+    response.headers
+      .get("Content-Disposition")
+      ?.replace("attachment; filename=", "") || "File";
+
+  performBrowserSave(fileName, await response.blob());
+}
