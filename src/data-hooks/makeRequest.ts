@@ -38,7 +38,7 @@ const handleRequestError = async (response: Response, errorMessage: string) => {
   throw new ApiRequestError(response.status, errorMessage);
 };
 
-export async function makeGetRequest(path: string, errorMessage?: string) {
+export async function makeRawRequest(path: string, errorMessage?: string) {
   const response = await fetch(pathWithBaseUrl(path), {
     method: "GET",
     headers: {
@@ -49,9 +49,14 @@ export async function makeGetRequest(path: string, errorMessage?: string) {
   await handleRequestError(
     response,
     errorMessage ||
-      "An error occurred fetching your data, Please try again later"
+      "An error occurred downloading your data, Please try again later"
   );
 
+  return response;
+}
+
+export async function makeGetRequest(path: string, errorMessage?: string) {
+  const response = await makeRawRequest(path, errorMessage);
   return response.json();
 }
 
@@ -125,44 +130,4 @@ export async function makePutRequest(
   options?: IActionRequestOptions
 ) {
   return makeActionRequest("PUT", path, data, options);
-}
-
-export async function makeDownloadRequest(path: string, errorMessage?: string) {
-  function performBrowserSave(filename: string, blob: Blob) {
-    const url = window.URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.style.display = "none";
-    a.href = url;
-    a.target = "_blank";
-    a.download = filename;
-    document.body.appendChild(a);
-
-    a.click();
-
-    setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    });
-  }
-
-  const response = await fetch(pathWithBaseUrl(path), {
-    method: "GET",
-    headers: {
-      ...getRequestHeaders(),
-    },
-  });
-
-  await handleRequestError(
-    response,
-    errorMessage ||
-      "An error occurred downloading your data, Please try again later"
-  );
-
-  const fileName =
-    response.headers
-      .get("Content-Disposition")
-      ?.replace("attachment; filename=", "") || "File";
-
-  performBrowserSave(fileName, await response.blob());
 }
