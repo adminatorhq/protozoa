@@ -1,4 +1,4 @@
 export { MutationHelpers } from "./mutation-helpers";
 export { useApiMutate } from "./useApiMutate";
-export { useApiMutateOptions } from "./useApiMutateOptions";
+export { useApiMutateOptitmisticOptions } from "./useApiMutateOptitmisticOptions";
 export { useWaitForResponseMutationOptions } from "./useWaitForResponseMutationOptions";
