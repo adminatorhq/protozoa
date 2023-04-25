@@ -6,7 +6,9 @@ import { useApiMutate } from "./useApiMutate";
 import { getQueryCachekey } from "../constants/getQueryCacheKey";
 import { ToastService } from "../../services";
 
-export function useApiMutateOptions<T, K>(options: IApiMutateOptions<T, K>) {
+export function useApiMutateOptitmisticOptions<T, K>(
+  options: IApiMutateOptions<T, K>
+) {
   const apiMutate = useApiMutate<T>(options.dataQueryPath);
   const queryClient = useQueryClient();
 
