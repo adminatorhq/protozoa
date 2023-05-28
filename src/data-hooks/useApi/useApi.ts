@@ -7,14 +7,11 @@ import { makeActionRequest, makeGetRequest } from "../makeRequest";
 import { buildApiOptions } from "../_buildOptions";
 import { AppStorage } from "../../services/storage/app";
 
-export function useApi<T>(endPoint: string, options: IUseApiOptions<T> = {}) {
+export function useApi<T>(endPoint: string, options: IUseApiOptions<T>) {
   const router = useRouter();
-  return useQuery<T>(
+  const { data = options.defaultData, ...rest } = useQuery<T>(
     getQueryCachekey(endPoint),
     async () => {
-      if (options.wipData) {
-        return options.wipData;
-      }
       try {
         if (options.request) {
           return await makeActionRequest(
@@ -37,6 +34,7 @@ export function useApi<T>(endPoint: string, options: IUseApiOptions<T> = {}) {
     },
     buildApiOptions(options)
   );
+  return { data, ...rest };
 }
 
 export function useStorageApi<T>(endPoint: string, options: IUseApiOptions<T>) {

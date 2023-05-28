@@ -1,13 +1,12 @@
 import noop from "lodash/noop";
 import { useQueryClient } from "react-query";
-import { PASS_DATA_FROM_HANDLER_ERROR_MESSAGE } from "./constants";
 import { IApiMutateOptions } from "./types";
 import { useApiMutate } from "./useApiMutate";
 import { getQueryCachekey } from "../constants/getQueryCacheKey";
 import { ToastService } from "../../services";
 
-export function useApiMutateOptitmisticOptions<T, K>(
-  options: IApiMutateOptions<T, K>
+export function useApiMutateOptimisticOptions<T, K, V = void>(
+  options: IApiMutateOptions<T, K, V>
 ) {
   const apiMutate = useApiMutate<T>(options.dataQueryPath);
   const queryClient = useQueryClient();
@@ -15,12 +14,9 @@ export function useApiMutateOptitmisticOptions<T, K>(
   return {
     onMutate: async (formData: K) =>
       apiMutate.set((oldData) => options.onMutate(oldData, formData)),
-    onSuccess: async (formData?: K) => {
+    onSuccess: async (requestResponse: V) => {
       if (options.smartSuccessMessage) {
-        if (formData === undefined) {
-          throw new Error(PASS_DATA_FROM_HANDLER_ERROR_MESSAGE);
-        }
-        ToastService.success(options.smartSuccessMessage(formData));
+        ToastService.success(options.smartSuccessMessage(requestResponse));
       } else if (options.successMessage) {
         ToastService.success(options.successMessage);
       }
@@ -30,10 +26,7 @@ export function useApiMutateOptitmisticOptions<T, K>(
         });
       }
       if (options.onSuccessActionWithFormData) {
-        if (formData === undefined) {
-          throw new Error(PASS_DATA_FROM_HANDLER_ERROR_MESSAGE);
-        }
-        options.onSuccessActionWithFormData(formData);
+        options.onSuccessActionWithFormData(requestResponse);
       }
     },
     onError: (

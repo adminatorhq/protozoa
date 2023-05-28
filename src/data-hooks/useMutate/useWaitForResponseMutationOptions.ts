@@ -1,8 +1,10 @@
 import { useQueryClient } from "react-query";
-import { PASS_DATA_FROM_HANDLER_ERROR_MESSAGE } from "./constants";
 import { getQueryCachekey } from "../constants/getQueryCacheKey";
 import { IWaitForResponseMutationOptions } from "./types";
 import { ToastService } from "../../services";
+
+const PASS_DATA_FROM_HANDLER_ERROR_MESSAGE =
+  "Please return in the mutation what data you want to pass to the success handlers";
 
 export function useWaitForResponseMutationOptions<T>(
   options: IWaitForResponseMutationOptions<T>
@@ -17,9 +19,7 @@ export function useWaitForResponseMutationOptions<T>(
 
       if (options.smartSuccessMessage) {
         if (formData === undefined) {
-          throw new Error(
-            "Please return what the data/message you want to return to user"
-          );
+          throw new Error(PASS_DATA_FROM_HANDLER_ERROR_MESSAGE);
         }
         ToastService.success(options.smartSuccessMessage(formData));
       } else if (options.successMessage) {

@@ -3,8 +3,15 @@
 export const MutationHelpers = {
   append: <T, K>(old: T[] | undefined = [], formData: K) => [...old, formData],
   remove: <T>(old: T[] | undefined = [], formData: T) => [
-    ...old.filter((oldItem) => formData !== oldItem),
+    ...old.filter(
+      (oldItem) => JSON.stringify(formData) !== JSON.stringify(oldItem)
+    ),
   ],
+  deleteByKey: <T extends Record<string, string>>(key: keyof T) => {
+    return (old: T[] | undefined = [], currentDataId: string) => [
+      ...old.filter((oldData) => currentDataId !== oldData[key]),
+    ];
+  },
   mergeArray: <T, K>(old: T[] | undefined = [], formData: K[] = []) => [
     ...old,
     ...formData,

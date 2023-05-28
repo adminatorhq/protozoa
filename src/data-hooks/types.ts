@@ -33,6 +33,7 @@ export interface IUseApiOptions<T> {
     method: "POST" | "PATCH" | "PUT";
     body: Record<string, unknown>;
   };
+  defaultData: T;
   placeholderData?: T;
   /*
   Some requests may go bad in the BE and it is makes sense
@@ -42,5 +43,4 @@ export interface IUseApiOptions<T> {
   i.e you want a value (undefined) and you want to handle it in the code
   */
   returnUndefinedOnError?: true;
-  wipData?: Partial<T>;
 }

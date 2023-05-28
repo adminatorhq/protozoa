@@ -23,14 +23,11 @@ export const tableDataParamsToQueryString = (
 export function usePaginatedData<T extends Record<string, unknown>>(
   endPoint: string,
   dataState: IPaginatedDataState<T>,
-  options: IUseApiOptions<PaginatedData<T>> = {}
+  options: IUseApiOptions<PaginatedData<T>>
 ): UseQueryResult<PaginatedData<T>> {
   return useQuery<PaginatedData<T>>(
     getPaginatedDataCachekey(endPoint, dataState),
     async () => {
-      if (options?.wipData) {
-        return options.wipData;
-      }
       return await makeGetRequest(
         endPoint + tableDataParamsToQueryString(dataState),
         "Data could not be retrieved"
