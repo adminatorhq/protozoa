@@ -9,6 +9,8 @@ export enum FilterOperators {
   BETWEEN = "b",
   DATE = "d",
   IN = "i",
+
+  IS_NULL = "s",
 }
 
 export interface IColumnFilterBag<T> {

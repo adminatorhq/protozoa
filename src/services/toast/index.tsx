@@ -9,9 +9,9 @@ const COLORS = {
 };
 
 const toastStyle = (color: keyof typeof COLORS) => ({
-  borderTopRightRadius: 0,
-  borderTopLeftRadius: 0,
+  borderRadius: `4px`,
   borderTop: `2px solid ${color}`,
+  maxWidth: "550px",
 });
 
 export const ToastService = {
