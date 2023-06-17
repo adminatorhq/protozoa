@@ -1,6 +1,6 @@
 import { AuthService } from "../services";
 import { SHARED_CONFIG } from "../services/config";
-import { NotFoundError, ApiRequestError } from "./_errors";
+import { ApiRequestError } from "./_errors";
 
 const pathWithBaseUrl = (path: string) => {
   if (path.startsWith("http")) {
@@ -24,18 +24,15 @@ const handleRequestError = async (response: Response, errorMessage: string) => {
   if (response.ok) {
     return;
   }
-  if (response.status === 404) {
-    throw new NotFoundError();
-  }
+  const error = await response.json();
+
   if ([401, 400].includes(response.status)) {
-    const error = await response.json();
     if (error.errorCode === SHARED_CONFIG.AUTH_ERROR_CODE) {
       AuthService.removeAuthToken();
       window.location.replace(SHARED_CONFIG.AUTH_SIGNIN_URL);
     }
-    throw new ApiRequestError(response.status, error.message);
   }
-  throw new ApiRequestError(response.status, errorMessage);
+  throw new ApiRequestError(response.status, error.message || errorMessage);
 };
 
 export async function makeRawRequest(path: string, errorMessage?: string) {
