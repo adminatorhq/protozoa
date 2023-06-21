@@ -16,7 +16,6 @@ export type IPaginatedDataState<T> = {
   pageIndex: number;
   pageSize?: number;
   sortBy?: OrderValue[];
-  hiddenColumns?: string[];
   filters?: Record<string, T>[];
 };
 

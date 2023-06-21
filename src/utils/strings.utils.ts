@@ -1,5 +1,4 @@
 import * as randomstring from "randomstring";
-import pluralize from "pluralize";
 
 export class StringUtils {
   static generateRandomString(length = 12): string {
@@ -25,8 +24,20 @@ export class StringUtils {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }
 
-  static pluralize(word: string, count: number, inclusive?: boolean): string {
-    return pluralize(word, count, inclusive);
+  static pluralize({
+    count,
+    singular,
+    plural,
+    inclusive,
+  }: {
+    count: number;
+    singular: string;
+    plural?: string;
+    inclusive?: boolean;
+  }): string {
+    const computed = count === 1 ? singular : plural || `${singular}s`;
+
+    return inclusive ? `${count} ${computed}` : computed;
   }
 
   static limitTo(word: string, length: number): string {
